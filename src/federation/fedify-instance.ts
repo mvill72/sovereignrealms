@@ -8,7 +8,6 @@
  * - Each realm is an ActivityPub Actor
  */
 
-import { createFederation, Person, Note, Create } from '@fedify/fedify';
 import { loadProfile, loadPosts, type Post, type Profile } from '@/utils/storage';
 
 // Federation configuration
@@ -35,53 +34,61 @@ export function getNoteUri(postId: string): string {
 export async function createActorFromProfile(
   address: string,
   profile: Profile
-): Promise<Person> {
+): Promise<any> {
   const actorId = getActorUri(address);
 
-  return new Person({
-    id: new URL(actorId),
+  return {
+    '@context': [
+      'https://www.w3.org/ns/activitystreams',
+      'https://w3id.org/security/v1',
+    ],
+    type: 'Person',
+    id: actorId,
     preferredUsername: profile.ensName || address.slice(0, 8),
     name: profile.name,
     summary: profile.bio,
     icon: profile.avatar ? {
-      url: new URL(profile.avatar.startsWith('http')
+      type: 'Image',
+      url: profile.avatar.startsWith('http')
         ? profile.avatar
-        : `https://ipfs.io/ipfs/${profile.avatar}`),
+        : `https://ipfs.io/ipfs/${profile.avatar}`,
       mediaType: 'image/png',
     } : undefined,
-    inbox: new URL(`${actorId}/inbox`),
-    outbox: new URL(`${actorId}/outbox`),
-    followers: new URL(`${actorId}/followers`),
-    following: new URL(`${actorId}/following`),
+    inbox: `${actorId}/inbox`,
+    outbox: `${actorId}/outbox`,
+    followers: `${actorId}/followers`,
+    following: `${actorId}/following`,
     // Link to on-chain profile
     attachment: profile.walletAddress ? [{
       type: 'PropertyValue',
       name: 'Wallet',
       value: profile.walletAddress,
     }] : undefined,
-  });
+  };
 }
 
 /**
  * Create ActivityPub Note from SovereignRealm post
  */
-export function createNoteFromPost(post: Post, actorUri: string): Note {
-  return new Note({
-    id: new URL(getNoteUri(post.id)),
-    attributedTo: new URL(actorUri),
+export function createNoteFromPost(post: Post, actorUri: string): any {
+  return {
+    '@context': 'https://www.w3.org/ns/activitystreams',
+    type: 'Note',
+    id: getNoteUri(post.id),
+    attributedTo: actorUri,
     content: post.content,
-    published: new Date(post.timestamp),
+    published: post.timestamp,
     // Link to IPFS content hash
     attachment: post.ipfsHash ? [{
       type: 'Document',
-      url: new URL(`https://ipfs.io/ipfs/${post.ipfsHash}`),
+      url: `https://ipfs.io/ipfs/${post.ipfsHash}`,
       name: 'IPFS Content Hash',
     }] : undefined,
     // Tag visibility
     to: post.visibility === 'public'
-      ? [new URL('https://www.w3.org/ns/activitystreams#Public')]
-      : [new URL(`${actorUri}/followers`)],
-  });
+      ? ['https://www.w3.org/ns/activitystreams#Public']
+      : [`${actorUri}/followers`],
+  };
 }
 
 /**

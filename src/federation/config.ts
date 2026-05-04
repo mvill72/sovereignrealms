@@ -4,7 +4,7 @@
  * ActivityPub federation settings for SovereignRealm
  */
 
-import { Federation, createFederation, MemoryKvStore } from '@fedify/fedify';
+import { createFederation, MemoryKvStore, type Federation } from '@fedify/fedify';
 import { loadProfile, loadPosts, type Post } from '@/utils/storage';
 import {
   createActorFromProfile,
