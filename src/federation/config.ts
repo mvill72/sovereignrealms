@@ -28,7 +28,7 @@ export function createRealmFederation(): Federation<void> {
   });
 
   // Actor dispatcher - returns the ActivityPub Person for a wallet address
-  federation.setActorDispatcher('/{handle}', async (ctx, handle) => {
+  federation.setActorDispatcher('/{identifier}', async (ctx, handle) => {
     try {
       // Handle is wallet address or ENS name
       const profile = loadProfile();
@@ -55,7 +55,7 @@ export function createRealmFederation(): Federation<void> {
 
   // Outbox dispatcher - returns public posts as ActivityPub objects
   federation.setOutboxDispatcher(
-    '/{handle}/outbox',
+    '/{identifier}/outbox',
     async (ctx, handle, cursor) => {
       try {
         const posts = loadPosts();
@@ -85,7 +85,7 @@ export function createRealmFederation(): Federation<void> {
 
   // Inbox dispatcher - handle incoming activities (Follow, Like, Create)
   federation
-    .setInboxListeners('/{handle}/inbox', '/inbox')
+    .setInboxListeners('/{identifier}/inbox', '/inbox')
     .on('Follow', async (ctx, follow) => {
       // Someone wants to follow this realm
       const followerUri = follow.actorId?.href;
