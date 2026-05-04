@@ -10,30 +10,39 @@ A **privacy-first, self-owned social platform** where you control your identity 
 - 📦 **Portable identity** - Export all your data anytime
 - 🚫 **No surveillance** - No central server tracking you
 
-## Current Implementation (MVP)
+## Current Implementation (MVP + Web3)
 
 ### ✅ What Works Now
 
-1. **Profile Management**
+1. **Web3 Identity** ⭐ NEW
+   - Connect any Ethereum wallet (MetaMask, Rainbow, Coinbase, etc.)
+   - ENS name and avatar auto-resolution
+   - Sign-In with Ethereum (SIWE) authentication
+   - Multi-chain support (Mainnet, Sepolia, Polygon, Optimism, Arbitrum, Base)
+   - Cryptographic proof of identity
+
+2. **Profile Management**
    - Edit your name and bio
-   - Auto-generated avatar (Dicebear API)
+   - Wallet-based identity with ENS
+   - Auto-generated avatar or ENS avatar
    - Local storage persistence
 
-2. **Post Creation**
+3. **Post Creation**
    - Write thoughts/updates
    - Choose visibility level (Private/Family/Work/Public)
    - Content hashing (SHA-256 based CIDs)
    - IPFS-style content addressing
 
-3. **Circle System**
+4. **Circle System**
    - Four visibility levels with distinct UI
    - Stats tracking per circle
    - Visual indicators for each post
 
-4. **Data Sovereignty**
+5. **Data Sovereignty**
    - All data in localStorage
    - One-click export to JSON
    - No server uploads (everything local)
+   - Wallet-based authentication (no passwords)
 
 ### 🔧 How It Works
 
@@ -64,16 +73,15 @@ src/
 
 ## Next Steps - The Roadmap to Full Sovereignty
 
-### Phase 2: Web3 Identity (Recommended Next)
-```bash
-bun add wagmi viem @rainbow-me/rainbowkit
-```
+### ✅ Phase 2: Web3 Identity (COMPLETED!)
+See [WEB3_GUIDE.md](./WEB3_GUIDE.md) for full documentation.
 
-**Add**:
-- Wallet connection (MetaMask, etc.)
-- Sign-in with Ethereum (SIWE)
-- Profile NFT (ERC-721) - mint your identity
-- Wallet-based authentication
+**What's Live**:
+- ✅ Wallet connection (RainbowKit)
+- ✅ Sign-in with Ethereum (SIWE)
+- ✅ ENS integration (names + avatars)
+- ✅ Multi-chain support
+- 🚧 Profile NFT (next step)
 
 ### Phase 3: Smart Contracts
 ```bash
