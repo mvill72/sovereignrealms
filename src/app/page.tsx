@@ -81,6 +81,14 @@ export default function SovereignRealm() {
     URL.revokeObjectURL(url);
   };
 
+  // Keyboard shortcut: Cmd/Ctrl + Enter to post
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+      e.preventDefault();
+      handleCreatePost();
+    }
+  };
+
   const getVisibilityIcon = (vis: Post['visibility']) => {
     switch (vis) {
       case 'private': return '🔒';
@@ -221,7 +229,8 @@ export default function SovereignRealm() {
             <textarea
               value={newPost}
               onChange={(e) => setNewPost(e.target.value)}
-              placeholder="Your thoughts, your realm. Private by default..."
+              onKeyDown={handleKeyDown}
+              placeholder="Your thoughts, your realm. Private by default... (Cmd/Ctrl+Enter to post)"
               className="w-full bg-zinc-800 p-4 rounded-xl resize-y min-h-[100px] focus:outline-none focus:ring-2 focus:ring-violet-500"
             />
             <div className="flex justify-between items-center mt-4">
