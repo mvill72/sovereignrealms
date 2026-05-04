@@ -21,7 +21,9 @@ import { shortenAddress } from '@/utils/ens';
 export default function SovereignRealm() {
   const { address, isConnected } = useAccount();
   const { data: ensName } = useEnsName({ address });
-  const { data: ensAvatar } = useEnsAvatar({ name: ensName });
+  const { data: ensAvatar } = useEnsAvatar({
+    name: ensName || undefined,
+  });
   const { data: walletClient } = useWalletClient();
 
   const [profile, setProfile] = useState<Profile>(getDefaultProfile());
