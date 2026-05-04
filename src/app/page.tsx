@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useAccount, useEnsName, useEnsAvatar, useWalletClient } from 'wagmi';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { uploadTextToIPFS } from '@/utils/ipfs';
 import {
   loadProfile,
@@ -13,14 +15,23 @@ import {
   type Post,
   type Profile
 } from '@/utils/storage';
+import { signInWithEthereum, isAuthenticated, clearAuthentication } from '@/utils/siwe';
+import { shortenAddress } from '@/utils/ens';
 
 export default function SovereignRealm() {
+  const { address, isConnected } = useAccount();
+  const { data: ensName } = useEnsName({ address });
+  const { data: ensAvatar } = useEnsAvatar({ name: ensName });
+  const { data: walletClient } = useWalletClient();
+
   const [profile, setProfile] = useState<Profile>(getDefaultProfile());
   const [posts, setPosts] = useState<Post[]>([]);
   const [newPost, setNewPost] = useState('');
   const [visibility, setVisibility] = useState<Post['visibility']>('private');
   const [isLoading, setIsLoading] = useState(false);
   const [editingProfile, setEditingProfile] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticating, setAuthenticating] = useState(false);
 
   // Load data on mount
   useEffect(() => {
@@ -32,7 +43,51 @@ export default function SovereignRealm() {
       saveProfile(getDefaultProfile());
     }
     setPosts(loadPosts());
-  }, []);
+
+    // Check if already authenticated
+    if (address) {
+      setAuthenticated(isAuthenticated(address));
+    }
+  }, [address]);
+
+  // Update profile when wallet connects and ENS resolves
+  useEffect(() => {
+    if (isConnected && address) {
+      const displayName = ensName || shortenAddress(address);
+      const avatarUrl = ensAvatar || profile.avatar;
+
+      setProfile(prev => ({
+        ...prev,
+        name: prev.name === 'Sovereign Self' ? displayName : prev.name,
+        avatar: avatarUrl,
+        walletAddress: address,
+      }));
+    }
+  }, [isConnected, address, ensName, ensAvatar]);
+
+  // Handle Sign-In with Ethereum
+  const handleSignIn = async () => {
+    if (!address || !walletClient) return;
+
+    setAuthenticating(true);
+    try {
+      const result = await signInWithEthereum(address, walletClient);
+      if (result) {
+        setAuthenticated(true);
+        console.log('🔐 Authentication successful');
+      }
+    } catch (error) {
+      console.error('Authentication failed:', error);
+    } finally {
+      setAuthenticating(false);
+    }
+  };
+
+  // Handle sign out
+  const handleSignOut = () => {
+    clearAuthentication();
+    setAuthenticated(false);
+  };
 
   const handleCreatePost = async () => {
     if (!newPost.trim()) return;
