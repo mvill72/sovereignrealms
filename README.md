@@ -9,13 +9,15 @@ A Web3-native, privacy-first social platform where **you own your identity and d
 
 ## 🌟 Features
 
-### Current (MVP + Web3)
+### Current (MVP + Web3 + Federation)
 - ✅ **Web3 Identity** - Connect wallet, ENS names/avatars, SIWE authentication
 - ✅ **Privacy Circles** - Choose who sees what (Private/Family/Work/Public)
 - ✅ **Content Addressing** - IPFS-style CID hashing for all posts
 - ✅ **Local Vault** - All data in your browser, zero server uploads
 - ✅ **Portable Data** - One-click export to JSON
 - ✅ **Multi-Chain** - Mainnet, Sepolia, Polygon, Optimism, Arbitrum, Base
+- ✅ **ActivityPub Federation** - Optional federation with Mastodon, Pixelfed, etc.
+- ✅ **Smart Contracts** - Profile NFT (ERC-721), Circle Keys (ERC-1155)
 
 ### Philosophy
 - **Individual First** - Your realm is yours. No forced sharing.
@@ -112,8 +114,8 @@ See `.env.example` for all options.
 - ✅ Phase 1: Local MVP with content addressing
 - ✅ Phase 2: Web3 identity (wallet + ENS + SIWE)
 - ✅ Phase 3: Smart contracts (Profile NFTs, Circle tokens) - **READY TO DEPLOY**
+- ✅ Phase 5: Federation (ActivityPub, Fediverse) - **COMPLETE**
 - 🚧 Phase 4: Real IPFS integration (web3.storage)
-- 🚧 Phase 5: Federation (ActivityPub, cross-realm)
 - 🚧 Phase 6: E2E encryption (family vaults)
 
 See [REALM.md](./REALM.md) for detailed roadmap.
@@ -137,6 +139,12 @@ See [REALM.md](./REALM.md) for detailed roadmap.
 - SovereignProfile.sol - ERC-721 identity NFT
 - CircleKeys.sol - ERC-1155 access tokens
 
+**Federation**
+- Fedify - Modern ActivityPub library
+- WebFinger - Actor discovery
+- NodeInfo - Instance metadata
+- ActivityStreams - Post format
+
 **Storage**
 - localStorage (browser vault)
 - Web Crypto API (SHA-256 hashing)
@@ -148,7 +156,8 @@ See [REALM.md](./REALM.md) for detailed roadmap.
 - [REALM.md](./REALM.md) - Full feature documentation + roadmap
 - [WEB3_GUIDE.md](./WEB3_GUIDE.md) - Web3 integration guide
 - [CONTRACTS.md](./CONTRACTS.md) - Smart contract documentation
-- [SMART_CONTRACTS_INTEGRATION.md](./SMART_CONTRACTS_INTEGRATION.md) - Contract deployment & integration guide
+- [SMART_CONTRACTS_INTEGRATION.md](./SMART_CONTRACTS_INTEGRATION.md) - Contract deployment & integration
+- [FEDERATION.md](./FEDERATION.md) - ActivityPub federation guide
 
 ## 🔒 Privacy & Security
 
