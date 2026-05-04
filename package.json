@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "contracts:compile": "hardhat compile",
+    "contracts:test": "hardhat test",
+    "contracts:deploy:local": "hardhat run scripts/deploy.ts --network localhost",
+    "contracts:deploy:sepolia": "hardhat run scripts/deploy.ts --network sepolia",
+    "contracts:node": "hardhat node"
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^2.2.10",
