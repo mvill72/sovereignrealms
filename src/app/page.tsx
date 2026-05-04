@@ -168,17 +168,49 @@ export default function SovereignRealm() {
           />
           <div>
             <h1 className="text-4xl font-bold">{profile.name}</h1>
-            <p className="text-zinc-400">Sovereign Realm • Your Protected Core</p>
+            <p className="text-zinc-400">
+              {isConnected && address ? (
+                <span className="flex items-center gap-2">
+                  <span className={`w-2 h-2 rounded-full ${authenticated ? 'bg-green-500' : 'bg-yellow-500'}`} />
+                  {ensName || shortenAddress(address)}
+                  {authenticated ? ' • Authenticated' : ' • Not Authenticated'}
+                </span>
+              ) : (
+                'Sovereign Realm • Your Protected Core'
+              )}
+            </p>
           </div>
         </div>
 
-        {/* Export Button */}
-        <button
-          onClick={handleExportData}
-          className="absolute top-4 right-4 bg-zinc-900/80 hover:bg-zinc-800 px-4 py-2 rounded-lg text-sm font-medium backdrop-blur-sm"
-        >
-          📦 Export All Data
-        </button>
+        {/* Header Actions */}
+        <div className="absolute top-4 right-4 flex gap-3">
+          {isConnected && !authenticated && (
+            <button
+              onClick={handleSignIn}
+              disabled={authenticating}
+              className="bg-violet-600 hover:bg-violet-700 disabled:bg-zinc-700 px-4 py-2 rounded-lg text-sm font-medium backdrop-blur-sm"
+            >
+              {authenticating ? '🔐 Signing...' : '🔐 Sign In with Ethereum'}
+            </button>
+          )}
+          {authenticated && (
+            <button
+              onClick={handleSignOut}
+              className="bg-zinc-900/80 hover:bg-zinc-800 px-4 py-2 rounded-lg text-sm font-medium backdrop-blur-sm"
+            >
+              🔓 Sign Out
+            </button>
+          )}
+          <button
+            onClick={handleExportData}
+            className="bg-zinc-900/80 hover:bg-zinc-800 px-4 py-2 rounded-lg text-sm font-medium backdrop-blur-sm"
+          >
+            📦 Export
+          </button>
+          <div className="rounded-lg overflow-hidden backdrop-blur-sm">
+            <ConnectButton />
+          </div>
+        </div>
       </div>
 
       <div className="flex gap-8 pt-20 px-8 max-w-7xl mx-auto">
@@ -272,7 +304,19 @@ export default function SovereignRealm() {
             <p>• Data stored locally in your browser</p>
             <p>• Content pinned to IPFS (decentralized)</p>
             <p>• No central server owns your data</p>
-            <p className="mt-3 text-xs">Future: Connect wallet for on-chain identity</p>
+            {isConnected && address ? (
+              <div className="mt-3 pt-3 border-t border-zinc-800">
+                <p className="text-green-400 font-medium">✓ Wallet Connected</p>
+                <p className="text-xs mt-1">{ensName || shortenAddress(address)}</p>
+                {authenticated ? (
+                  <p className="text-green-400 text-xs mt-1">✓ Authenticated via SIWE</p>
+                ) : (
+                  <p className="text-yellow-400 text-xs mt-1">⚠ Click "Sign In" to authenticate</p>
+                )}
+              </div>
+            ) : (
+              <p className="mt-3 text-xs text-zinc-600">Connect wallet for on-chain identity</p>
+            )}
           </div>
         </div>
 

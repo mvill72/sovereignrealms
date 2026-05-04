@@ -16,6 +16,7 @@ export interface Profile {
   avatar: string;
   cover: string;
   walletAddress?: string;
+  ensName?: string;
   circles: {
     family: string[];
     work: string[];
