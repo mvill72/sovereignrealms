@@ -16,9 +16,10 @@ const federation = getFederation();
 
 export async function GET(
   request: Request,
-  { params }: { params: { path: string[] } }
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
   try {
+    await params; // Await params in Next.js 16
     return await federation.fetch(request, {
       contextData: undefined,
     });
@@ -30,9 +31,10 @@ export async function GET(
 
 export async function POST(
   request: Request,
-  { params }: { params: { path: string[] } }
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
   try {
+    await params; // Await params in Next.js 16
     return await federation.fetch(request, {
       contextData: undefined,
     });
