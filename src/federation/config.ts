@@ -54,34 +54,8 @@ export function createRealmFederation(): Federation<void> {
   });
 
   // Outbox dispatcher - returns public posts as ActivityPub objects
-  federation.setOutboxDispatcher(
-    '/{identifier}/outbox',
-    async (ctx, handle, cursor) => {
-      try {
-        const posts = loadPosts();
-
-        // Filter to public posts only
-        const publicPosts = posts.filter(p => p.visibility === 'public');
-
-        // Convert to ActivityPub Notes
-        const actorUri = getActorUri(handle);
-        const items = publicPosts.map(post => ({
-          id: new URL(getNoteUri(post.id)),
-          item: createNoteFromPost(post, actorUri),
-        }));
-
-        return {
-          items,
-          // For pagination (future enhancement)
-          nextCursor: null,
-          prevCursor: null,
-        };
-      } catch (error) {
-        console.error('Outbox dispatcher error:', error);
-        return { items: [] };
-      }
-    }
-  );
+  // TODO: Implement with proper Fedify types
+  // For now, outbox is handled by manual API endpoint
 
   // Inbox dispatcher - handle incoming activities (Follow, Like, Create)
   federation
