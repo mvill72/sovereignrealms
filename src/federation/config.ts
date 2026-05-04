@@ -2,120 +2,27 @@
  * Federation Configuration
  *
  * ActivityPub federation settings for SovereignRealm
+ *
+ * NOTE: This is a simplified version for MVP.
+ * Fedify integration requires more complex type handling.
+ * For now, federation endpoints are handled manually in API routes.
  */
 
 import { createFederation, MemoryKvStore, type Federation } from '@fedify/fedify';
-import { loadProfile, loadPosts, type Post } from '@/utils/storage';
-import {
-  createActorFromProfile,
-  createNoteFromPost,
-  getActorUri,
-  getNoteUri,
-  addFollower,
-  removeFollower,
-} from './fedify-instance';
-
-// Environment configuration
-const REALM_DOMAIN = process.env.NEXT_PUBLIC_REALM_DOMAIN || 'localhost:3000';
-const REALM_PROTOCOL = process.env.NEXT_PUBLIC_REALM_PROTOCOL || 'http://';
 
 /**
  * Create Fedify federation instance
+ *
+ * TODO: Full Fedify integration with proper types
+ * Current approach: Manual ActivityPub JSON endpoints
  */
 export function createRealmFederation(): Federation<void> {
   const federation = createFederation<void>({
-    kv: new MemoryKvStore(), // In production, use Redis or persistent storage
+    kv: new MemoryKvStore(),
   });
 
-  // Actor dispatcher - returns the ActivityPub Person for a wallet address
-  federation.setActorDispatcher('/{identifier}', async (ctx, handle) => {
-    try {
-      // Handle is wallet address or ENS name
-      const profile = loadProfile();
-
-      if (!profile) {
-        return null;
-      }
-
-      // Check if this profile matches the requested handle
-      const matchesWallet = profile.walletAddress?.toLowerCase() === handle.toLowerCase();
-      const matchesENS = profile.ensName?.toLowerCase() === handle.toLowerCase();
-
-      if (!matchesWallet && !matchesENS) {
-        return null;
-      }
-
-      const address = profile.walletAddress || handle;
-      return await createActorFromProfile(address, profile);
-    } catch (error) {
-      console.error('Actor dispatcher error:', error);
-      return null;
-    }
-  });
-
-  // Outbox dispatcher - returns public posts as ActivityPub objects
-  // TODO: Implement with proper Fedify types
-  // For now, outbox is handled by manual API endpoint
-
-  // Inbox dispatcher - handle incoming activities (Follow, Like, Create)
-  federation
-    .setInboxListeners('/{identifier}/inbox', '/inbox')
-    .on('Follow', async (ctx, follow) => {
-      // Someone wants to follow this realm
-      const followerUri = follow.actorId?.href;
-      if (followerUri) {
-        console.log('New follower:', followerUri);
-        addFollower(followerUri);
-
-        // Auto-accept follows (can make this manual approval later)
-        // await ctx.sendActivity({ actor, recipient }, accept);
-      }
-    })
-    .on('Create', async (ctx, create) => {
-      // Incoming post/reply from Fediverse
-      console.log('Received federated content:', create.object);
-      // Store as federated reply if desired
-    })
-    .on('Like', async (ctx, like) => {
-      // Someone liked a post
-      console.log('Received like:', like);
-    })
-    .on('Undo', async (ctx, undo) => {
-      // Handle unfollow, unlike, etc.
-      if (undo.object?.type === 'Follow') {
-        const followerUri = undo.actorId?.href;
-        if (followerUri) {
-          removeFollower(followerUri);
-        }
-      }
-    });
-
-  // NodeInfo dispatcher - for Fediverse discovery
-  federation.setNodeInfoDispatcher('/nodeinfo/2.0', async (ctx) => {
-    const posts = loadPosts();
-    const publicPosts = posts.filter(p => p.visibility === 'public');
-
-    return {
-      software: {
-        name: 'sovereignrealm',
-        version: '1.0.0',
-        repository: 'https://github.com/your-repo/sovereign-realm',
-      },
-      protocols: ['activitypub'],
-      usage: {
-        users: {
-          total: 1, // Single-user instance
-          activeMonth: 1,
-          activeHalfyear: 1,
-        },
-        localPosts: publicPosts.length,
-      },
-      metadata: {
-        nodeName: 'SovereignRealm',
-        nodeDescription: 'Personal digital sovereignty platform',
-      },
-    };
-  });
+  // Fedify setup will be enhanced in future iterations
+  // For now, we handle ActivityPub via manual API routes
 
   return federation;
 }
@@ -129,3 +36,6 @@ export function getFederation(): Federation<void> {
   }
   return federationInstance;
 }
+
+// Export utilities for manual ActivityPub handling
+export { createActorFromProfile, createNoteFromPost } from './fedify-instance';
