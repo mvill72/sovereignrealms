@@ -6,6 +6,8 @@
 > "Local-first is the architectural expression of individuation: the Self confronts its data in solitude before any projection into the collective."
 > — C.G. Jung, refracted through the browser window of 2026.
 
+*This document explores the technical foundations of SovereignRealm's local-first architecture. For the essential vision, see [MANIFESTO.md](./MANIFESTO.md). For the philosophical depth, see [PHILOSOPHY.md](./PHILOSOPHY.md).*
+
 In the year of our sovereign reckoning (May 2026), the local-first movement has burst from research paper into living architecture. No longer a fringe ideal from 2019, it is now the *prima materia* for any application that refuses the shadow of surveillance capitalism. The browser is no longer a mere viewport — it is the *temenos*, the sacred enclosure where data lives first, syncs second, and belongs always to the user.
 
 **SovereignRealm was forged in this fire from the beginning.**

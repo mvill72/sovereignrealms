@@ -1,5 +1,7 @@
 # SovereignRealm - Your Digital Citadel
 
+> *For the essential vision, read [MANIFESTO.md](./MANIFESTO.md) - The founding principles in crystallized form.*
+
 ## What Is This?
 
 A **privacy-first, self-owned social platform** where you control your identity and data. Think Facebook, but:
