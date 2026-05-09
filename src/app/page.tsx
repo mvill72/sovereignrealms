@@ -394,6 +394,22 @@ export default function SovereignRealm() {
               </div>
             </div>
 
+            {/* Shadow Journal Access */}
+            <div className="vault-card border-2 border-realm-crimson-600/20">
+              <h3 className="text-sm font-mono text-realm-crimson-600 mb-3 uppercase tracking-wide flex items-center gap-2">
+                <span>⟐</span> Shadow Journal
+              </h3>
+              <p className="text-xs text-realm-parchment-50/60 mb-3">
+                Posts integrated rather than destroyed.
+              </p>
+              <button
+                onClick={() => setShowShadowJournal(true)}
+                className="btn-ghost text-sm w-full border border-realm-crimson-600/30 hover:border-realm-crimson-600"
+              >
+                Open Shadow Archive
+              </button>
+            </div>
+
             {/* Post Statistics */}
             <div className="vault-card">
               <h3 className="text-sm font-mono text-realm-gold-500 mb-3 uppercase tracking-wide">
@@ -517,6 +533,24 @@ export default function SovereignRealm() {
           onComplete={completeEveningReview}
           onExport={handleExportData}
           {...getPostStats()}
+        />
+      )}
+
+      {/* Shadow Journal */}
+      {showShadowJournal && (
+        <ShadowJournal
+          onClose={() => setShowShadowJournal(false)}
+          onPostRemoved={() => setPosts(loadPosts())}
+        />
+      )}
+
+      {/* Burn Ritual Modal */}
+      {burnRitualPost && (
+        <BurnRitualModal
+          postId={burnRitualPost.id}
+          postContent={burnRitualPost.content}
+          onComplete={handleBurnRitualComplete}
+          onCancel={() => setBurnRitualPost(null)}
         />
       )}
     </div>
