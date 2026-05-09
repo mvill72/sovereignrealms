@@ -199,6 +199,9 @@ See [REALM.md](./REALM.md) for detailed roadmap.
 - [LENS.md](./LENS.md) - **The Archetypal Confrontation** - SovereignRealm vs. Lens Protocol (2026 deep-dive)
 - [LOCAL-FIRST.md](./LOCAL-FIRST.md) - **The Local-First Mandala** - Browser-native architecture & framework comparison (2026)
 
+### Design & User Experience
+- **[DESIGN.md](./DESIGN.md)** - **The Design Mandala** - Complete visual system (colors, typography, components, Figma guide)
+
 ### Technical Integration
 - [WEB3_GUIDE.md](./WEB3_GUIDE.md) - Web3 integration guide
 - [CONTRACTS.md](./CONTRACTS.md) - Smart contract documentation
