@@ -158,8 +158,14 @@ See [REALM.md](./REALM.md) for detailed roadmap.
 
 **Frontend**
 - Next.js 16 (App Router, React 19)
-- Tailwind CSS v4
+- Tailwind CSS v4 (with custom SovereignRealm design system)
 - TypeScript
+
+**Design System**
+- **Colors**: Indigo (Vault), Gold (Sovereign), Obsidian, Parchment, Crimson
+- **Typography**: Instrument Serif (posts), Inter (UI), Space Grotesk (code)
+- **Components**: Vault cards, Circle sigils, sovereign buttons
+- See [DESIGN.md](./DESIGN.md) for complete visual mandala
 
 **Web3**
 - wagmi - React hooks for Ethereum
