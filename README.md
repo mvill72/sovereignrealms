@@ -208,6 +208,7 @@ See [REALM.md](./REALM.md) for detailed roadmap.
 ### Design & User Experience
 - **[DESIGN.md](./DESIGN.md)** - **The Design Mandala** - Complete visual system (colors, typography, components, Figma guide)
 - **[STOIC_UI.md](./STOIC_UI.md)** - **Stoic UI Patterns** - Interface as practice (reflection gates, finite feeds, evening review)
+- **[JUNGIAN_UI.md](./JUNGIAN_UI.md)** - **Jungian Archetypes** - The psychological layer (Hero's Call, Shadow confrontation, Wise Old One prompts)
 
 ### Technical Integration
 - [WEB3_GUIDE.md](./WEB3_GUIDE.md) - Web3 integration guide
