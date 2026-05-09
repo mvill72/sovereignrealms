@@ -27,6 +27,7 @@ import {
 } from '@/components/stoic';
 import { OnboardingFlow, useOnboardingStatus } from '@/components/onboarding';
 import { ShadowJournal, BurnRitualModal } from '@/components/shadow';
+import { BetaBanner, BetaFeedbackPrompt, useBetaFeedback, ReportIssueButton, BetaFeedbackExport } from '@/components/beta';
 
 // Map old visibility to new Circle terminology
 type Circle = 'vault' | 'family' | 'work' | 'outer';
@@ -65,6 +66,8 @@ export default function SovereignRealm() {
   const { shouldShowOnboarding, completeOnboarding } = useOnboardingStatus();
   const [showShadowJournal, setShowShadowJournal] = useState(false);
   const [burnRitualPost, setBurnRitualPost] = useState<{ id: string; content: string } | null>(null);
+  const { shouldShow: shouldShowBetaFeedback, dismiss: dismissBetaFeedback, complete: completeBetaFeedback } = useBetaFeedback();
+  const [showSettings, setShowSettings] = useState(false);
 
   // Load data on mount
   useEffect(() => {
@@ -275,6 +278,9 @@ export default function SovereignRealm() {
   // Main SovereignRealm interface
   return (
     <div className="min-h-screen bg-realm-indigo-950 text-realm-parchment-50 font-sans">
+      {/* Beta Banner */}
+      <BetaBanner />
+
       {/* Header — The Sovereign Crown */}
       <header className="border-b border-realm-indigo-800 bg-realm-indigo-900/50 backdrop-blur-sm sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
