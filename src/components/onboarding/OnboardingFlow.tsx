@@ -83,15 +83,22 @@ export function OnboardingFlow({ onComplete, onConnect, onSignIn }: OnboardingFl
         'archetype-shadow',
         'archetype-persona',
         'archetype-anima',
-        'archetype-hero'
+        'archetype-hero',
+        'archetype-wise',
+        'archetype-persona-weaver',
+        'archetype-integrated'
       );
 
-      // Apply chosen archetype
+      // Apply chosen archetype (map archetype ID to CSS class)
       const archetypeClassMap = {
         stoic: 'archetype-self',
         jungian: 'archetype-persona',
         anima: 'archetype-anima',
-        balanced: 'archetype-self',
+        shadow: 'archetype-shadow',
+        wise: 'archetype-wise',
+        hero: 'archetype-hero',
+        persona: 'archetype-persona-weaver',
+        integrated: 'archetype-integrated',
       };
 
       const archetypeClass = archetypeClassMap[archetypeId as keyof typeof archetypeClassMap];

@@ -313,7 +313,7 @@
   --archetype-glow: rgba(212, 175, 119, 0.15);
 }
 
-/* The Hero — Journey of individuation (Onboarding) */
+/* The Hero — Journey of individuation */
 .archetype-hero {
   --archetype-accent: var(--color-realm-gold-500);
   --archetype-glow: rgba(201, 161, 95, 0.2);
@@ -321,6 +321,38 @@
 
 .archetype-hero .vault-card {
   box-shadow: 0 0 60px var(--archetype-glow);
+}
+
+/* The Wise Old One — Reflection and inner guidance */
+.archetype-wise {
+  --archetype-accent: var(--color-realm-parchment-50);
+  --archetype-glow: rgba(245, 238, 222, 0.1);
+}
+
+.archetype-wise .vault-card {
+  background: linear-gradient(135deg, var(--color-realm-indigo-900), var(--color-realm-indigo-800));
+  border-color: var(--color-realm-parchment-50);
+}
+
+/* The Persona Weaver — Outer expression and federation */
+.archetype-persona-weaver {
+  --archetype-accent: var(--color-realm-gold-400);
+  --archetype-glow: rgba(212, 175, 119, 0.12);
+}
+
+.archetype-persona-weaver .vault-card {
+  border-color: var(--color-realm-gold-400);
+}
+
+/* The Integrated Self — Wholeness and balance */
+.archetype-integrated {
+  --archetype-accent: var(--color-realm-gold-500);
+  --archetype-glow: rgba(99, 102, 241, 0.12);
+}
+
+.archetype-integrated .vault-card {
+  background: linear-gradient(135deg, var(--color-realm-indigo-900), var(--color-realm-indigo-800));
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.15), 0 0 60px rgba(201, 161, 95, 0.1);
 }
 
 /* ========================================

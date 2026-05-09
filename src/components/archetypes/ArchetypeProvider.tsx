@@ -61,7 +61,11 @@ export function ArchetypeProvider({ children }: ArchetypeProviderProps) {
       stoic: 'self',
       jungian: 'persona',
       anima: 'anima',
-      balanced: 'self',
+      shadow: 'shadow',
+      wise: 'self', // Wise Old One uses self archetype with reflection focus
+      hero: 'hero',
+      persona: 'persona',
+      integrated: 'self', // Integrated uses balanced self
     };
 
     if (savedArchetype && archetypeMap[savedArchetype]) {
