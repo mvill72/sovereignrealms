@@ -563,6 +563,51 @@ export default function SovereignRealm() {
           onCancel={() => setBurnRitualPost(null)}
         />
       )}
+
+      {/* Beta Feedback Prompt */}
+      {shouldShowBetaFeedback && (
+        <BetaFeedbackPrompt
+          onComplete={completeBetaFeedback}
+          onDismiss={dismissBetaFeedback}
+        />
+      )}
+
+      {/* Settings Modal */}
+      {showSettings && (
+        <div className="modal-overlay flex items-center justify-center">
+          <div className="modal-content max-w-4xl max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-start mb-6">
+              <h2 className="font-serif text-3xl text-realm-gold-500">
+                Settings
+              </h2>
+              <button
+                onClick={() => setShowSettings(false)}
+                className="btn-ghost"
+              >
+                ✕ Close
+              </button>
+            </div>
+
+            <div className="space-y-6">
+              {/* Beta Feedback Export */}
+              <BetaFeedbackExport />
+
+              {/* Other settings can go here */}
+              <div className="vault-card">
+                <h3 className="text-sm font-mono text-realm-gold-500 mb-3 uppercase tracking-wide">
+                  Archetype
+                </h3>
+                <p className="text-sm text-realm-parchment-50/70 mb-3">
+                  Current: <span className="text-realm-gold-400">{localStorage.getItem('sovereignUIArchetype') || 'None'}</span>
+                </p>
+                <p className="text-xs text-realm-parchment-50/40">
+                  Archetype switching UI coming soon.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
