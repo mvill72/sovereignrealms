@@ -209,7 +209,8 @@ See [REALM.md](./REALM.md) for detailed roadmap.
 - **[DESIGN.md](./DESIGN.md)** - **The Design Mandala** - Complete visual system (colors, typography, components, Figma guide)
 - **[STOIC_UI.md](./STOIC_UI.md)** - **Stoic UI Patterns** - Interface as practice (reflection gates, finite feeds, evening review)
 - **[JUNGIAN_UI.md](./JUNGIAN_UI.md)** - **Jungian Archetypes** - The psychological layer (Hero's Call, Shadow confrontation, Wise Old One prompts)
-- **[ARCHETYPE_CHOICE.md](./ARCHETYPE_CHOICE.md)** - **The Sovereign Choice** - User-selected UI archetype at first entry (Stoic/Jungian/Anima/Balanced)
+- **[ARCHETYPE_CHOICE.md](./ARCHETYPE_CHOICE.md)** - **The Sovereign Choice** - User-selected UI archetype at first entry (4 paths)
+- **[EXPANDED_ARCHETYPE_MANDALA.md](./EXPANDED_ARCHETYPE_MANDALA.md)** - **The Eightfold Path** - Expanded archetype system (8 distinct visual garments)
 
 ### Technical Integration
 - [WEB3_GUIDE.md](./WEB3_GUIDE.md) - Web3 integration guide
