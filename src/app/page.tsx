@@ -236,232 +236,251 @@ export default function SovereignRealm() {
   const filteredPosts = getFilteredPosts();
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white font-sans">
-      {/* Cover & Avatar - FB style */}
-      <div className="h-80 bg-gradient-to-r from-purple-900 to-indigo-900 relative">
-        {profile.cover && (
-          <img src={profile.cover} alt="Cover" className="w-full h-full object-cover" />
-        )}
-        <div className="absolute -bottom-16 left-8 flex items-end gap-6">
-          <img
-            src={profile.avatar || `https://api.dicebear.com/7.x/shapes/svg?seed=${profile.name}`}
-            alt="Avatar"
-            className="w-32 h-32 rounded-full border-4 border-zinc-950 bg-zinc-800"
-          />
-          <div>
-            <h1 className="text-4xl font-bold">{profile.name}</h1>
-            <p className="text-zinc-400">
-              {isConnected && address ? (
-                <span className="flex items-center gap-2">
-                  <span className={`w-2 h-2 rounded-full ${authenticated ? 'bg-green-500' : 'bg-yellow-500'}`} />
+    <div className="min-h-screen bg-realm-indigo-950 text-realm-parchment-50 font-sans">
+      {/* Header — The Sovereign Crown */}
+      <header className="border-b border-realm-indigo-800 bg-realm-indigo-900/50 backdrop-blur-sm sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="flex items-center gap-6">
+            <h1 className="text-2xl font-serif text-realm-gold-500">SovereignRealm</h1>
+            {isConnected && address && (
+              <div className="flex items-center gap-2 text-sm">
+                <span className={`w-2 h-2 rounded-full ${authenticated ? 'bg-green-500' : 'bg-yellow-500'}`} />
+                <span className="text-realm-parchment-50/70">
                   {ensName || shortenAddress(address)}
-                  {authenticated ? ' • Authenticated' : ' • Not Authenticated'}
                 </span>
-              ) : (
-                'Sovereign Realm • Your Protected Core'
-              )}
-            </p>
+              </div>
+            )}
           </div>
-        </div>
 
-        {/* Header Actions */}
-        <div className="absolute top-4 right-4 flex gap-3">
-          {isConnected && !authenticated && (
-            <button
-              onClick={handleSignIn}
-              disabled={authenticating}
-              className="bg-violet-600 hover:bg-violet-700 disabled:bg-zinc-700 px-4 py-2 rounded-lg text-sm font-medium backdrop-blur-sm"
-            >
-              {authenticating ? '🔐 Signing...' : '🔐 Sign In with Ethereum'}
+          <div className="flex items-center gap-3">
+            {isConnected && !authenticated && (
+              <button
+                onClick={handleSignIn}
+                disabled={authenticating}
+                className="btn-secondary"
+              >
+                {authenticating ? '🔐 Signing...' : '🔐 Sign In'}
+              </button>
+            )}
+            {authenticated && (
+              <button onClick={handleSignOut} className="btn-ghost">
+                🔓 Sign Out
+              </button>
+            )}
+            <button onClick={handleExportData} className="btn-ghost">
+              📦 Export
             </button>
-          )}
-          {authenticated && (
-            <button
-              onClick={handleSignOut}
-              className="bg-zinc-900/80 hover:bg-zinc-800 px-4 py-2 rounded-lg text-sm font-medium backdrop-blur-sm"
-            >
-              🔓 Sign Out
-            </button>
-          )}
-          <button
-            onClick={handleExportData}
-            className="bg-zinc-900/80 hover:bg-zinc-800 px-4 py-2 rounded-lg text-sm font-medium backdrop-blur-sm"
-          >
-            📦 Export
-          </button>
-          <div className="rounded-lg overflow-hidden backdrop-blur-sm">
             <ConnectButton />
           </div>
         </div>
-      </div>
+      </header>
 
-      <div className="flex gap-8 pt-20 px-8 max-w-7xl mx-auto">
-        {/* Left Column: About / Circles */}
-        <div className="w-80 space-y-6">
-          <div className="bg-zinc-900 p-6 rounded-xl">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold">The Protected Core</h2>
-              <button
-                onClick={() => setEditingProfile(!editingProfile)}
-                className="text-sm text-violet-400 hover:text-violet-300"
-              >
-                {editingProfile ? '✓ Save' : '✎ Edit'}
-              </button>
-            </div>
-            {editingProfile ? (
-              <div className="space-y-3">
-                <input
-                  type="text"
-                  value={profile.name}
-                  onChange={(e) => setProfile({ ...profile, name: e.target.value })}
-                  className="w-full bg-zinc-800 p-2 rounded text-sm"
-                  placeholder="Your name"
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8">
+          {/* Left Sidebar — The Circle Selector & Profile */}
+          <aside className="space-y-6">
+            {/* Profile Card */}
+            <div className="vault-card">
+              <div className="flex items-center gap-4 mb-4">
+                <img
+                  src={profile.avatar || ensAvatar || `https://api.dicebear.com/7.x/shapes/svg?seed=${profile.name}`}
+                  alt="Avatar"
+                  className="w-16 h-16 rounded-full border-2 border-realm-gold-500"
                 />
-                <textarea
-                  value={profile.bio}
-                  onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
-                  className="w-full bg-zinc-800 p-2 rounded text-sm resize-y min-h-[60px]"
-                  placeholder="Your bio"
-                />
-                <button
-                  onClick={handleUpdateProfile}
-                  className="w-full bg-violet-600 hover:bg-violet-700 py-2 rounded font-medium text-sm"
-                >
-                  Save Profile
-                </button>
+                <div>
+                  <h2 className="font-serif text-xl text-realm-gold-500">{profile.name}</h2>
+                  <p className="text-sm text-realm-parchment-50/60">
+                    {isConnected ? 'Sovereign' : 'Unconnected'}
+                  </p>
+                </div>
               </div>
-            ) : (
-              <p className="text-zinc-400">{profile.bio}</p>
-            )}
-          </div>
-
-          <div className="bg-zinc-900 p-6 rounded-xl">
-            <h3 className="font-semibold mb-3">My Circles (Choose Sharing)</h3>
-            <div className="space-y-2">
-              <button
-                onClick={() => setVisibility('family')}
-                className={`w-full text-left p-3 rounded-lg transition-colors ${
-                  visibility === 'family' ? 'bg-emerald-900 ring-2 ring-emerald-500' : 'bg-emerald-950 hover:bg-emerald-900'
-                }`}
-              >
-                👨‍👩‍👧 Family Realm
-              </button>
-              <button
-                onClick={() => setVisibility('work')}
-                className={`w-full text-left p-3 rounded-lg transition-colors ${
-                  visibility === 'work' ? 'bg-blue-900 ring-2 ring-blue-500' : 'bg-blue-950 hover:bg-blue-900'
-                }`}
-              >
-                💼 Work Collegium
-              </button>
-              <button
-                onClick={() => setVisibility('public')}
-                className={`w-full text-left p-3 rounded-lg transition-colors ${
-                  visibility === 'public' ? 'bg-amber-900 ring-2 ring-amber-500' : 'bg-amber-950 hover:bg-amber-900'
-                }`}
-              >
-                🌐 Outer World (Public)
-              </button>
-              <button
-                onClick={() => setVisibility('private')}
-                className={`w-full text-left p-3 rounded-lg transition-colors ${
-                  visibility === 'private' ? 'bg-zinc-700 ring-2 ring-zinc-500' : 'bg-zinc-800 hover:bg-zinc-700'
-                }`}
-              >
-                🔒 Vault Only – Never Shared
-              </button>
-            </div>
-
-            <div className="mt-4 pt-4 border-t border-zinc-800">
-              <div className="text-xs text-zinc-500 space-y-1">
-                <p>📊 Total posts: {posts.length}</p>
-                <p>🔒 Private: {posts.filter(p => p.visibility === 'private').length}</p>
-                <p>🌐 Public: {posts.filter(p => p.visibility === 'public').length}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-zinc-900 p-6 rounded-xl text-sm text-zinc-500">
-            <p className="font-semibold text-zinc-400 mb-2">🛡️ Sovereignty Status</p>
-            <p>• Data stored locally in your browser</p>
-            <p>• Content pinned to IPFS (decentralized)</p>
-            <p>• No central server owns your data</p>
-            {isConnected && address ? (
-              <div className="mt-3 pt-3 border-t border-zinc-800">
-                <p className="text-green-400 font-medium">✓ Wallet Connected</p>
-                <p className="text-xs mt-1">{ensName || shortenAddress(address)}</p>
-                {authenticated ? (
-                  <p className="text-green-400 text-xs mt-1">✓ Authenticated via SIWE</p>
-                ) : (
-                  <p className="text-yellow-400 text-xs mt-1">⚠ Click "Sign In" to authenticate</p>
-                )}
-              </div>
-            ) : (
-              <p className="mt-3 text-xs text-zinc-600">Connect wallet for on-chain identity</p>
-            )}
-          </div>
-        </div>
-
-        {/* Main Feed – Your Timeline */}
-        <div className="flex-1 space-y-6">
-          {/* Composer */}
-          <div className="bg-zinc-900 p-6 rounded-xl">
-            <h2 className="text-xl font-semibold mb-4">What stirs in your psyche?</h2>
-            <textarea
-              value={newPost}
-              onChange={(e) => setNewPost(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Your thoughts, your realm. Private by default... (Cmd/Ctrl+Enter to post)"
-              className="w-full bg-zinc-800 p-4 rounded-xl resize-y min-h-[100px] focus:outline-none focus:ring-2 focus:ring-violet-500"
-            />
-            <div className="flex justify-between items-center mt-4">
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-zinc-500">Share with:</span>
-                <span className="text-sm font-medium">
-                  {getVisibilityIcon(visibility)} {visibility.charAt(0).toUpperCase() + visibility.slice(1)}
-                </span>
-              </div>
-              <button
-                onClick={handleCreatePost}
-                disabled={!newPost.trim() || isLoading}
-                className="bg-violet-600 hover:bg-violet-700 disabled:bg-zinc-700 disabled:cursor-not-allowed px-8 py-2 rounded-full font-medium transition-colors"
-              >
-                {isLoading ? 'Publishing...' : 'Post to Chosen Realm'}
-              </button>
-            </div>
-          </div>
-
-          {/* Posts */}
-          {posts.length === 0 ? (
-            <div className="bg-zinc-900 p-12 rounded-xl text-center">
-              <p className="text-zinc-500 text-lg">Your realm awaits your first thought.</p>
-              <p className="text-zinc-600 text-sm mt-2">All posts are private by default. You control what you share.</p>
-            </div>
-          ) : (
-            posts.map(post => (
-              <div key={post.id} className="bg-zinc-900 p-6 rounded-xl hover:bg-zinc-800/50 transition-colors group">
-                <div className="flex justify-between text-sm text-zinc-500 mb-4">
-                  <span>
-                    {getVisibilityIcon(post.visibility)} {post.visibility} • {new Date(post.timestamp).toLocaleString()}
-                  </span>
-                  <button
-                    onClick={() => handleDeletePost(post.id)}
-                    className="opacity-0 group-hover:opacity-100 text-red-500 hover:text-red-400 transition-opacity"
-                  >
-                    🗑️ Delete
+              {editingProfile ? (
+                <div className="space-y-3">
+                  <input
+                    type="text"
+                    value={profile.name}
+                    onChange={(e) => setProfile({ ...profile, name: e.target.value })}
+                    className="input"
+                    placeholder="Your name"
+                  />
+                  <textarea
+                    value={profile.bio}
+                    onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
+                    className="textarea"
+                    placeholder="Your bio"
+                    rows={3}
+                  />
+                  <button onClick={handleUpdateProfile} className="btn-primary w-full">
+                    Save Profile
                   </button>
                 </div>
-                <p className="text-lg leading-relaxed whitespace-pre-wrap">{post.content}</p>
-                {post.ipfsHash && (
-                  <div className="mt-3 text-xs text-zinc-600 bg-zinc-950 p-2 rounded font-mono">
-                    📌 Pinned to IPFS: {post.ipfsHash.slice(0, 30)}...
-                  </div>
+              ) : (
+                <>
+                  <p className="text-sm text-realm-parchment-50/70 mb-3">{profile.bio}</p>
+                  <button
+                    onClick={() => setEditingProfile(true)}
+                    className="btn-ghost text-sm w-full"
+                  >
+                    ✎ Edit Profile
+                  </button>
+                </>
+              )}
+            </div>
+
+            {/* Circle Selector */}
+            <div className="vault-card">
+              <h3 className="text-sm font-mono text-realm-gold-500 mb-4 uppercase tracking-wide">
+                Navigate Circles
+              </h3>
+              <CircleSelector
+                selected={currentCircle}
+                onSelect={(circle) => setCurrentCircle(circle)}
+              />
+            </div>
+
+            {/* Sovereignty Status */}
+            <div className="vault-card">
+              <h3 className="text-sm font-mono text-realm-gold-500 mb-3 uppercase tracking-wide">
+                🛡️ Sovereignty
+              </h3>
+              <div className="space-y-2 text-xs text-realm-parchment-50/60">
+                <p>✓ Local storage only</p>
+                <p>✓ Content-addressed (IPFS)</p>
+                <p>✓ Wallet-based identity</p>
+                <p>✓ Zero surveillance</p>
+                {authenticated && (
+                  <p className="text-green-400 mt-3 pt-3 border-t border-realm-indigo-700">
+                    ✓ Authenticated via SIWE
+                  </p>
                 )}
               </div>
-            ))
-          )}
+            </div>
+
+            {/* Post Statistics */}
+            <div className="vault-card">
+              <h3 className="text-sm font-mono text-realm-gold-500 mb-3 uppercase tracking-wide">
+                Your Reflections
+              </h3>
+              <div className="grid grid-cols-2 gap-3 text-xs">
+                <div className="text-center p-3 bg-realm-indigo-800 rounded-realm">
+                  <div className="text-lg font-serif text-realm-indigo-500">
+                    {getPostStats().vaultCount}
+                  </div>
+                  <div className="text-realm-parchment-50/60 mt-1">🔒 Vault</div>
+                </div>
+                <div className="text-center p-3 bg-realm-indigo-800 rounded-realm">
+                  <div className="text-lg font-serif text-emerald-500">
+                    {getPostStats().familyCount}
+                  </div>
+                  <div className="text-realm-parchment-50/60 mt-1">👨‍👩‍👧 Family</div>
+                </div>
+                <div className="text-center p-3 bg-realm-indigo-800 rounded-realm">
+                  <div className="text-lg font-serif text-blue-500">
+                    {getPostStats().workCount}
+                  </div>
+                  <div className="text-realm-parchment-50/60 mt-1">💼 Work</div>
+                </div>
+                <div className="text-center p-3 bg-realm-indigo-800 rounded-realm">
+                  <div className="text-lg font-serif text-purple-500">
+                    {getPostStats().outerCount}
+                  </div>
+                  <div className="text-realm-parchment-50/60 mt-1">🌐 Outer</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          {/* Main Content — The Feed */}
+          <main className="space-y-6">
+            {/* Daily Reflection Counter */}
+            <DailyReflectionCounter
+              current={filteredPosts.length}
+              total={12}
+              circle={currentCircle}
+            />
+
+            {/* Post Composer */}
+            <div className="vault-card">
+              <h2 className="font-serif text-2xl mb-4 text-realm-gold-500">
+                What stirs in your psyche?
+              </h2>
+              <textarea
+                value={newPost}
+                onChange={(e) => setNewPost(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder={`Your thoughts enter the ${currentCircle === 'vault' ? 'Vault' : currentCircle.charAt(0).toUpperCase() + currentCircle.slice(1) + ' Realm'}... (⌘Enter to post)`}
+                className="textarea"
+                rows={4}
+              />
+              <div className="flex justify-between items-center mt-4">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-realm-parchment-50/60">Writing to:</span>
+                  <span className="text-sm font-mono text-realm-gold-500 uppercase">
+                    {currentCircle}
+                  </span>
+                </div>
+                <button
+                  onClick={() => handleCreatePost(currentCircle)}
+                  disabled={!newPost.trim() || isLoading}
+                  className="btn-primary"
+                >
+                  {isLoading ? 'Inscribing...' : currentCircle === 'vault' ? 'Guard in Vault' : 'Open Reflection Gate'}
+                </button>
+              </div>
+            </div>
+
+            {/* Posts Feed */}
+            {filteredPosts.length === 0 ? (
+              <div className="vault-card p-12 text-center">
+                <p className="font-serif text-xl text-realm-parchment-50/70 mb-2">
+                  The {currentCircle === 'vault' ? 'Vault' : currentCircle.charAt(0).toUpperCase() + currentCircle.slice(1) + ' Realm'} awaits your first reflection.
+                </p>
+                <p className="text-sm text-realm-parchment-50/40">
+                  {currentCircle === 'vault'
+                    ? 'All thoughts begin here, in the inner sanctum.'
+                    : 'Thoughts must first be guarded in the Vault before release.'}
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {filteredPosts.slice(0, 12).map(post => (
+                  <ImmutablePostCard
+                    key={post.id}
+                    post={{
+                      id: post.id,
+                      cid: post.ipfsHash || `local-${post.id.slice(0, 16)}`,
+                      content: post.content,
+                      circle: visibilityToCircle(post.visibility),
+                      createdAt: new Date(post.timestamp),
+                    }}
+                    onRefine={handleRefinePost}
+                    onBurn={handleBurnPost}
+                    onRelease={handleReleasePost}
+                  />
+                ))}
+              </div>
+            )}
+          </main>
         </div>
       </div>
+
+      {/* Reflection Gate Modal */}
+      {showReflectionGate && targetCircle !== 'vault' && (
+        <ReflectionGate
+          targetCircle={targetCircle as 'family' | 'work' | 'outer'}
+          onConfirm={() => publishPost(targetCircle)}
+          onCancel={() => setShowReflectionGate(false)}
+        />
+      )}
+
+      {/* Evening Review */}
+      {shouldShowEveningReview && (
+        <EveningReview
+          onComplete={completeEveningReview}
+          onExport={handleExportData}
+          {...getPostStats()}
+        />
+      )}
     </div>
   );
 }
