@@ -278,81 +278,176 @@
 }
 
 /* ========================================
-   Jungian Archetype Theme Layers
+   Archetype Theme Layers — The Eight Garments
    ======================================== */
 
-/* The Self — Center of wholeness (Vault) */
+/* 1. The Stoic Citadel — Discipline and control */
 .archetype-self {
-  --archetype-accent: var(--color-realm-indigo-500);
-  --archetype-glow: rgba(99, 102, 241, 0.15);
+  --accent: var(--color-realm-gold-400);
+  --vault-bg: var(--color-realm-obsidian-950);
+  --text-primary: var(--color-realm-parchment-50);
+  --card-bg: var(--color-realm-obsidian-900);
+  --border: var(--color-realm-indigo-700);
+  --shadow: 0 25px 50px -12px rgb(212 175 119 / 0.15);
 }
 
-/* The Shadow — Confronting the unconscious */
+/* 2. The Jungian Temenos — Symbols and depth */
+.archetype-persona {
+  --accent: var(--color-realm-indigo-500);
+  --vault-bg: var(--color-realm-indigo-950);
+  --text-primary: var(--color-realm-parchment-50);
+  --card-bg: var(--color-realm-indigo-800);
+  --border: var(--color-realm-gold-400);
+  --shadow: 0 25px 50px -12px rgb(99 102 241 / 0.25);
+}
+
+/* 3. The Relational Bridge — Anima/Animus */
+.archetype-anima {
+  --accent: var(--color-realm-gold-500);
+  --vault-bg: var(--color-realm-indigo-800);
+  --text-primary: var(--color-realm-parchment-50);
+  --card-bg: var(--color-realm-indigo-700);
+  --border: var(--color-realm-gold-400);
+  --shadow: 0 25px 50px -12px rgb(201 161 95 / 0.3);
+}
+
+/* 4. The Shadow Guardian — Privacy and confrontation */
 .archetype-shadow {
-  --archetype-accent: var(--color-realm-crimson-600);
-  --archetype-glow: rgba(159, 18, 57, 0.15);
-}
-
-.archetype-shadow .vault-card {
-  border-color: var(--color-realm-crimson-600);
+  --accent: var(--color-realm-crimson-600);
+  --vault-bg: var(--color-realm-obsidian-950);
+  --text-primary: var(--color-realm-parchment-50);
+  --card-bg: var(--color-realm-obsidian-900);
+  --border: var(--color-realm-crimson-600);
+  --shadow: 0 25px 50px -12px rgb(159 18 57 / 0.3);
 }
 
 .archetype-shadow .modal-content {
-  box-shadow: 0 0 40px var(--archetype-glow);
+  box-shadow: 0 0 40px rgba(159, 18, 57, 0.25);
 }
 
-/* The Persona — Social mask (Outer World) */
-.archetype-persona {
-  --archetype-accent: var(--color-realm-gold-500);
-  --archetype-glow: rgba(201, 161, 95, 0.15);
+/* 5. The Wise Old One — Reflection and guidance */
+.archetype-wise {
+  --accent: var(--color-realm-gold-400);
+  --vault-bg: var(--color-realm-indigo-900);
+  --text-primary: var(--color-realm-parchment-50);
+  --card-bg: var(--color-realm-indigo-800);
+  --border: var(--color-realm-indigo-500);
+  --shadow: 0 10px 15px -3px rgb(212 175 119 / 0.2);
 }
 
-/* The Anima/Animus — Relational soul (Family/Work) */
-.archetype-anima {
-  --archetype-accent: var(--color-realm-gold-400);
-  --archetype-glow: rgba(212, 175, 119, 0.15);
+.archetype-wise::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 30% 70%, rgba(248, 241, 227, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
 }
 
-/* The Hero — Journey of individuation */
+/* 6. The Hero of Individuation — The journey */
 .archetype-hero {
-  --archetype-accent: var(--color-realm-gold-500);
-  --archetype-glow: rgba(201, 161, 95, 0.2);
+  --accent: var(--color-realm-gold-500);
+  --vault-bg: var(--color-realm-indigo-950);
+  --text-primary: var(--color-realm-parchment-50);
+  --card-bg: var(--color-realm-indigo-800);
+  --border: var(--color-realm-gold-400);
+  --shadow: 0 25px 50px -12px rgb(212 175 119 / 0.4);
 }
 
 .archetype-hero .vault-card {
-  box-shadow: 0 0 60px var(--archetype-glow);
+  box-shadow: 0 0 60px rgba(201, 161, 95, 0.2);
 }
 
-/* The Wise Old One — Reflection and inner guidance */
-.archetype-wise {
-  --archetype-accent: var(--color-realm-parchment-50);
-  --archetype-glow: rgba(245, 238, 222, 0.1);
-}
-
-.archetype-wise .vault-card {
-  background: linear-gradient(135deg, var(--color-realm-indigo-900), var(--color-realm-indigo-800));
-  border-color: var(--color-realm-parchment-50);
-}
-
-/* The Persona Weaver — Outer expression and federation */
+/* 7. The Persona Weaver — Outer expression */
 .archetype-persona-weaver {
-  --archetype-accent: var(--color-realm-gold-400);
-  --archetype-glow: rgba(212, 175, 119, 0.12);
+  --accent: var(--color-realm-indigo-500);
+  --vault-bg: var(--color-realm-indigo-900);
+  --text-primary: var(--color-realm-parchment-50);
+  --card-bg: var(--color-realm-indigo-800);
+  --border: var(--color-realm-parchment-50);
+  --shadow: 0 15px 25px -5px rgb(99 102 241 / 0.2);
 }
 
-.archetype-persona-weaver .vault-card {
-  border-color: var(--color-realm-gold-400);
-}
-
-/* The Integrated Self — Wholeness and balance */
+/* 8. The Integrated Self — Wholeness and balance */
 .archetype-integrated {
-  --archetype-accent: var(--color-realm-gold-500);
-  --archetype-glow: rgba(99, 102, 241, 0.12);
+  --accent: var(--color-realm-gold-500);
+  --vault-bg: var(--color-realm-indigo-900);
+  --text-primary: var(--color-realm-parchment-50);
+  --card-bg: var(--color-realm-indigo-800);
+  --border: var(--color-realm-indigo-500);
+  --shadow: 0 25px 50px -12px rgb(212 175 119 / 0.25);
 }
 
 .archetype-integrated .vault-card {
   background: linear-gradient(135deg, var(--color-realm-indigo-900), var(--color-realm-indigo-800));
   box-shadow: 0 0 30px rgba(99, 102, 241, 0.15), 0 0 60px rgba(201, 161, 95, 0.1);
+}
+
+.archetype-integrated::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 30% 70%, rgba(248, 241, 227, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Global application of archetype variables */
+.archetype-self,
+.archetype-persona,
+.archetype-anima,
+.archetype-shadow,
+.archetype-wise,
+.archetype-hero,
+.archetype-persona-weaver,
+.archetype-integrated {
+  background-color: var(--vault-bg);
+  color: var(--text-primary);
+  transition: background-color 400ms ease, color 400ms ease;
+}
+
+/* Component inheritance of archetype variables */
+.archetype-self .vault-card,
+.archetype-persona .vault-card,
+.archetype-anima .vault-card,
+.archetype-shadow .vault-card,
+.archetype-wise .vault-card,
+.archetype-hero .vault-card,
+.archetype-persona-weaver .vault-card,
+.archetype-integrated .vault-card {
+  background-color: var(--card-bg);
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+}
+
+.archetype-self .circle-sigil,
+.archetype-persona .circle-sigil,
+.archetype-anima .circle-sigil,
+.archetype-shadow .circle-sigil,
+.archetype-wise .circle-sigil,
+.archetype-hero .circle-sigil,
+.archetype-persona-weaver .circle-sigil,
+.archetype-integrated .circle-sigil {
+  color: var(--accent);
+}
+
+/* Archetype-specific behavioral enhancements */
+.archetype-anima .post-card {
+  transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.archetype-shadow .burn-button {
+  animation: shadow-pulse 2s infinite alternate;
+}
+
+@keyframes shadow-pulse {
+  0% { box-shadow: 0 0 5px rgba(159, 18, 57, 0.3); }
+  100% { box-shadow: 0 0 15px rgba(159, 18, 57, 0.6); }
+}
+
+.archetype-hero .progress-ring {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 800ms ease;
 }
 
 /* ========================================
