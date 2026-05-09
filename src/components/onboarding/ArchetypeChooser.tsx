@@ -110,7 +110,7 @@ interface ArchetypeChooserProps {
 }
 
 export function ArchetypeChooser({ onChosen }: ArchetypeChooserProps) {
-  const [selectedId, setSelectedId] = useState<Archetype['id']>('balanced');
+  const [selectedId, setSelectedId] = useState<Archetype['id']>('integrated');
   const selectedArchetype = archetypes.find(a => a.id === selectedId);
 
   const handleChoose = () => {
