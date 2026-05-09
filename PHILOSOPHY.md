@@ -32,6 +32,8 @@ The infrastructure of composable SocialFi on its own Lens Chain (ZK-powered, mod
 
 **The shadow?** Commodification of relation. Every connection becomes a tokenizable asset. The Self is not guarded; it is minted, traded, and mirrored before it has time to individuate.
 
+> **For a focused technical and philosophical deep-dive on the SovereignRealm vs. Lens Protocol confrontation**, see [LENS.md](./LENS.md)
+
 ### DeSo's Shadow — The Psyche Enslaved to Price
 
 The native L1 engineered purely for social, still pushing creator coins and on-chain posts in 2026. Economic incentives flow like blood through the graph.

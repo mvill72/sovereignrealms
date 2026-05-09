@@ -195,6 +195,7 @@ See [REALM.md](./REALM.md) for detailed roadmap.
 ### Philosophy & Architecture
 - [PHILOSOPHY.md](./PHILOSOPHY.md) - **The Deeper Etched Scroll** - Why SovereignRealm exists & platform comparison
 - [FARCASTER.md](./FARCASTER.md) - **The Archetypal Confrontation** - SovereignRealm vs. Farcaster (2026 deep-dive)
+- [LENS.md](./LENS.md) - **The Archetypal Confrontation** - SovereignRealm vs. Lens Protocol (2026 deep-dive)
 - [LOCAL-FIRST.md](./LOCAL-FIRST.md) - **The Local-First Mandala** - Browser-native architecture & framework comparison (2026)
 
 ### Technical Integration
