@@ -36,15 +36,27 @@ This is not another node in the decentralized agora. This is the ***temenos*** �
 
 While **Farcaster** builds the liveliest decentralized agora, **Lens** forges the most composable social graph, **DeSo** scales the tokenized social economy, and **Nostr** offers pure relay freedom — **SovereignRealm does something more radical: it returns the throne to you.**
 
+### The Others Liberated the Graph. We Liberate the Psyche.
+
+Every other Web3 social platform, however noble its rebellion against surveillance capitalism, still builds its temple **outside the sovereign**. All of them liberate the graph. **None have yet liberated the psyche.**
+
+**SovereignRealm is the exception.**
+
 Your data never leaves your device until you consciously release it through one of four sovereign Circles. Local-first by design. Private-by-default. Wallet-as-identity. Optional federation and smart contracts.
+
+### This is Not Another Social Network
 
 **This is not another Web3 social app. This is the digital *Meditations* — a personal realm where the Self individuates before it participates.**
 
-*Join the others to broadcast. Join SovereignRealm to become before you broadcast.*
+Not collaboration-first. Not token-first. Not engagement-first. **Sovereignty-first.**
 
-> **For Philosophers:** See [PHILOSOPHY.md](./PHILOSOPHY.md) for the complete Jungian/Stoic manifesto and shadow analysis.
+*The others built the agora. We built the inner citadel from which a free soul may enter the agora without losing itself.*
+
+> **For Everyone:** Read the complete [MANIFESTO.md](./MANIFESTO.md) - The founding vision in full
 >
-> **For Architects:** See [REALM.md - Technical Foundations](./REALM.md#technical-foundations-the-mandala-of-architectures) for the DeSoc platform comparison, and [LOCAL-FIRST.md](./LOCAL-FIRST.md) for the local-first framework mandala.
+> **For Philosophers:** See [PHILOSOPHY.md](./PHILOSOPHY.md) for the Jungian/Stoic analysis and DeSoc shadow work
+>
+> **For Architects:** See [REALM.md - Technical Foundations](./REALM.md#technical-foundations-the-mandala-of-architectures) for the DeSoc platform comparison, and [LOCAL-FIRST.md](./LOCAL-FIRST.md) for the local-first framework mandala
 
 ## 🚀 Quick Start
 
@@ -176,6 +188,9 @@ See [REALM.md](./REALM.md) for detailed roadmap.
 ### Getting Started
 - [QUICKSTART.md](./QUICKSTART.md) - 30-second setup guide
 - [REALM.md](./REALM.md) - Full feature documentation + roadmap
+
+### The Vision
+- **[MANIFESTO.md](./MANIFESTO.md)** - **The SovereignRealm Manifesto** - The founding vision: individuation before participation
 
 ### Philosophy & Architecture
 - [PHILOSOPHY.md](./PHILOSOPHY.md) - **The Deeper Etched Scroll** - Why SovereignRealm exists & platform comparison

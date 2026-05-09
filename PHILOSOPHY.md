@@ -6,6 +6,8 @@
 > "You have power over your mind — not outside events. Realize this, and you will find strength."
 > — Marcus Aurelius, Meditations (the Stoic root of all true sovereignty)
 
+*For the essential vision in crystallized form, see [MANIFESTO.md](./MANIFESTO.md). This document provides the philosophical depth and shadow analysis behind the manifesto.*
+
 In the *unus mundus* of 2026's decentralized social psyche, four great archetypes have risen: **Farcaster** (the lively, Frame-driven agora), **Lens Protocol** (the composable weaver of on-chain relations), **DeSo** (the tokenized L1 empire of social finance), and **Nostr** (the cypherpunk wanderer of relays). Each has slain the dragon of centralized surveillance in its own way. Yet each casts a shadow — the unconscious compensation for what it refuses to integrate.
 
 **SovereignRealm does not merely compete with them. It completes them.**
