@@ -25,6 +25,7 @@ import {
   useEveningReview,
   ImmutablePostCard,
 } from '@/components/stoic';
+import { OnboardingFlow, useOnboardingStatus } from '@/components/onboarding';
 
 // Map old visibility to new Circle terminology
 type Circle = 'vault' | 'family' | 'work' | 'outer';
@@ -60,6 +61,7 @@ export default function SovereignRealm() {
   const [authenticated, setAuthenticated] = useState(false);
   const [authenticating, setAuthenticating] = useState(false);
   const { shouldShow: shouldShowEveningReview, markComplete: completeEveningReview } = useEveningReview();
+  const { shouldShowOnboarding, completeOnboarding } = useOnboardingStatus();
 
   // Load data on mount
   useEffect(() => {
@@ -235,6 +237,30 @@ export default function SovereignRealm() {
 
   const filteredPosts = getFilteredPosts();
 
+  // Handle onboarding completion
+  const handleOnboardingComplete = (archetypeId: string) => {
+    console.log(`✨ Archetype chosen: ${archetypeId}`);
+    completeOnboarding();
+  };
+
+  // Handle wallet connection request from onboarding
+  const handleConnectRequest = () => {
+    // RainbowKit's ConnectButton will be triggered by user
+    console.log('Wallet connection requested');
+  };
+
+  // If onboarding not complete, show onboarding flow
+  if (shouldShowOnboarding) {
+    return (
+      <OnboardingFlow
+        onComplete={handleOnboardingComplete}
+        onConnect={handleConnectRequest}
+        onSignIn={handleSignIn}
+      />
+    );
+  }
+
+  // Main SovereignRealm interface
   return (
     <div className="min-h-screen bg-realm-indigo-950 text-realm-parchment-50 font-sans">
       {/* Header — The Sovereign Crown */}
