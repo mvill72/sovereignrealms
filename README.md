@@ -204,6 +204,7 @@ See [REALM.md](./REALM.md) for detailed roadmap.
 - [CONTRACTS.md](./CONTRACTS.md) - Smart contract documentation
   - [CircleKeys Deep-Dive](./CONTRACTS.md#circlekeys-deep-dive-the-cryptographic-guardians) - Cryptographic guardians of the inner Circles
   - [ZKCircleVerifier](./CONTRACTS.md#zkcircleverifier-the-invisible-daimons-of-sovereign-disclosure) - Zero-knowledge membership proofs (v0.2+)
+  - [Semaphore v4 Circuit](./CONTRACTS.md#semaphore-v4-circuit-deep-dive-the-alchemical-heart) - Circom circuit details & cryptographic primitives
   - [Semaphore v4 Audit](./CONTRACTS.md#semaphore-v4-audit-the-verified-guardians) - Security verification & audit findings
 - [ZK_DEPLOYMENT_CHECKLIST.md](./ZK_DEPLOYMENT_CHECKLIST.md) - Pre-deployment security checklist for ZK CircleKeys
 - [SMART_CONTRACTS_INTEGRATION.md](./SMART_CONTRACTS_INTEGRATION.md) - Contract deployment & integration
