@@ -50,6 +50,25 @@ export function ArchetypeProvider({ children }: ArchetypeProviderProps) {
   const [activeArchetype, setActiveArchetype] = useState<Archetype>('self');
   const [activeCircle, setActiveCircle] = useState<Circle>('vault');
 
+  // Load archetype preference on mount
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const savedArchetype = localStorage.getItem('sovereignUIArchetype');
+
+    // Map saved archetype ID to initial active archetype
+    const archetypeMap: Record<string, Archetype> = {
+      stoic: 'self',
+      jungian: 'persona',
+      anima: 'anima',
+      balanced: 'self',
+    };
+
+    if (savedArchetype && archetypeMap[savedArchetype]) {
+      setActiveArchetype(archetypeMap[savedArchetype]);
+    }
+  }, []);
+
   // Map Circle to Archetype
   useEffect(() => {
     if (activeArchetype === 'shadow' || activeArchetype === 'hero') {
