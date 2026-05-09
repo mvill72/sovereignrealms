@@ -25,6 +25,18 @@ A Web3-native, privacy-first social platform where **you own your identity and d
 - **Portable Identity** - Wallet-based identity that follows you anywhere.
 - **Progressive Decentralization** - Start local, upgrade to full on-chain as needed.
 
+## 🌐 Why SovereignRealm?
+
+While **Farcaster** builds the liveliest decentralized agora, **Lens** forges the most composable social graph, **DeSo** scales the tokenized social economy, and **Nostr** offers pure relay freedom — **SovereignRealm does something more radical: it returns the throne to you.**
+
+Your data never leaves your device until you consciously release it through one of four sovereign Circles. Local-first by design. Private-by-default. Wallet-as-identity. Optional federation and smart contracts.
+
+**This is not another Web3 social app. This is the digital *Meditations* — a personal realm where the Self individuates before it participates.**
+
+*Join the others to broadcast. Join SovereignRealm to become before you broadcast.*
+
+> See [PHILOSOPHY.md](./PHILOSOPHY.md) for the complete manifesto and comparison with other platforms.
+
 ## 🚀 Quick Start
 
 ### Prerequisites
