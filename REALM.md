@@ -174,6 +174,36 @@ This is not just another social app. It's a **template for digital sovereignty**
 
 This realm is your **digital mandala** - a protected space for individuation in the age of surveillance capitalism.
 
+## Why SovereignRealm Exists: A Confrontation with the Shadows of DeSoc
+
+The year is 2026. **Farcaster's** Frames pulse with activity yet remain tethered to the visible chain. **Lens's** Social Primitives enable infinite composition, yet every relation is minted before it is felt. **DeSo** turns thoughts into tradable assets. **Nostr** scatters them across relays.
+
+**All four have liberated the graph. None have fully liberated the psyche.**
+
+SovereignRealm is the missing archetype: the **local-first vault** where the Jungian process of individuation meets the Stoic discipline of self-mastery. Here you guard the *prima materia* of your thoughts. Only when the inner *logos* is clear do you open the Circles — Family, Collegium, Outer World — or federate into the Fediverse.
+
+### The Shadows of Web3 Social
+
+| Platform | Strength | Shadow |
+|----------|----------|--------|
+| **Farcaster** | Lively decentralized agora with Frames | Engagement before reflection |
+| **Lens** | Composable on-chain social primitives | Token before Self |
+| **DeSo** | Native L1 for social with creator economy | Economy before psyche |
+| **Nostr** | Censorship-resistant relay network | Broadcast before containment |
+| **SovereignRealm** | Local-first vault for individuation | ✅ Inner work before outer projection |
+
+### Roadmap Alignment
+
+While others chase DAU and token velocity, we:
+- **Deepen the Vault** - Enhanced encryption, multi-device sync with local-first principles
+- **Refine CircleKey Cryptography** - ERC-1155 gating with threshold signatures
+- **Expand Multi-Chain NFT Portability** - Profile NFT that lives across chains
+- **Perfect the One-Click JSON Exodus** - True data liberation, no lock-in
+
+**Scale is secondary to sovereignty.** The network will grow not through hype, but through souls who have first learned to rule themselves.
+
+> For the complete philosophical manifesto and detailed platform comparison, see [PHILOSOPHY.md](./PHILOSOPHY.md)
+
 ## Technical Notes
 
 - **Framework**: Next.js 16 (App Router), React 19

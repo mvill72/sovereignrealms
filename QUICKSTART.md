@@ -72,6 +72,22 @@ You experienced **digital sovereignty**:
 5. ✅ Content-addressed posts (immutable hashes)
 6. ✅ Privacy circles under your control
 
+## What Makes SovereignRealm Different?
+
+**Farcaster**, **Lens**, **DeSo**, and **Nostr** have all solved decentralization. But they share one blind spot: they never ask you to pause before broadcasting.
+
+SovereignRealm is different:
+- **Private-by-default** - Start in your Vault, share when ready (vs. public-by-default)
+- **Local-first** - Zero server uploads unless you choose (vs. hubs, chains, or relays)
+- **Individuation before participation** - Build your inner citadel first (vs. engagement metrics)
+- **Optional everything** - Federation, contracts, tokens are tools, never requirements (vs. protocol lock-in)
+
+This is not another social network. This is a **personal practice** disguised as software.
+
+> "Rule first your own domain, let the outer world remain indifferent." — Marcus Aurelius
+
+Want the full philosophy? See [PHILOSOPHY.md](./PHILOSOPHY.md)
+
 ## Understanding the Interface
 
 ### Top Header
