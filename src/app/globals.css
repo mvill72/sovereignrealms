@@ -1,26 +1,289 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/**
+ * SovereignRealm Design System
+ * "The soul is dyed by the colour of its thoughts — and the realm by the colour of its interface."
+ * — Marcus Aurelius, Meditations, now rendered in Tailwind v4
+ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* ========================================
+     The Sacred Palette — 2026 SovereignRealm
+     ======================================== */
+
+  /* Indigo — The Vault's Depths */
+  --color-realm-indigo-950: #0a0a2e;   /* Deepest Vault background (obsidian night) */
+  --color-realm-indigo-900: #12123f;   /* Primary background */
+  --color-realm-indigo-800: #1a1a5c;   /* Card surfaces */
+  --color-realm-indigo-700: #2a2a7a;   /* Hover states */
+  --color-realm-indigo-500: #6366f1;   /* Active Circle accents */
+
+  /* Gold — The Sovereign Sigil */
+  --color-realm-gold-600: #b38a4b;     /* Hover / focus */
+  --color-realm-gold-500: #c9a15f;     /* Primary brand gold */
+  --color-realm-gold-400: #d4af77;     /* Burnished sigils, verified actions */
+
+  /* Obsidian — The Unbreakable Text */
+  --color-realm-obsidian-950: #050505; /* True black (text on parchment) */
+  --color-realm-obsidian-900: #111113; /* Secondary surfaces */
+
+  /* Parchment — The Morning Light */
+  --color-realm-parchment-50: #f5eede;  /* Subtle highlights, post text */
+  --color-realm-parchment-100: #f8f1e3; /* Light mode toggle (rare, sacred) */
+
+  /* Crimson — The Stoic Warning */
+  --color-realm-crimson-600: #9f1239;  /* Revoke / burn key */
+
+  /* ========================================
+     Typography — The Sacred Scripts
+     ======================================== */
+
+  /* Serif — For post body, the scroll of Aurelius */
+  --font-serif: 'Instrument Serif', 'Georgia', serif;
+
+  /* Sans — Clean UI labels */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Mono — CID hashes & contract addresses */
+  --font-mono: 'Space Grotesk', 'Menlo', 'Monaco', monospace;
+
+  /* ========================================
+     Spacing & Geometry
+     ======================================== */
+
+  /* Border radius — Temple corners */
+  --radius-realm: 0.75rem;
+
+  /* Shadows — The Vault's inner glow */
+  --shadow-vault: 0 25px 50px -12px rgb(99 102 241 / 0.15);
 }
 
-@media (prefers-color-scheme: dark) {
+/* ========================================
+   Base Layer — The Foundation
+   ======================================== */
+
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Default to dark mode — the Vault's natural state */
+    --background: var(--color-realm-indigo-950);
+    --foreground: var(--color-realm-parchment-50);
+  }
+
+  body {
+    @apply bg-realm-indigo-950 text-realm-parchment-50 font-sans antialiased;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+  }
+
+  /* Headings — The gravitas of ancient scrolls */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight;
+  }
+
+  h1 { @apply text-4xl lg:text-5xl; }
+  h2 { @apply text-3xl lg:text-4xl; }
+  h3 { @apply text-2xl lg:text-3xl; }
+  h4 { @apply text-xl lg:text-2xl; }
+
+  /* Code & Addresses — Immutable elements */
+  code, .address, .cid {
+    @apply font-mono text-sm;
+  }
+
+  /* Links — The golden path */
+  a {
+    @apply text-realm-gold-500 hover:text-realm-gold-400 transition-colors;
+  }
+
+  /* Focus states — Accessibility & sovereignty */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-realm-indigo-500 ring-offset-2 ring-offset-realm-indigo-950;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ========================================
+   Component Layer — The Living Archetypes
+   ======================================== */
+
+@layer components {
+  /* Vault Card — The sacred container */
+  .vault-card {
+    @apply bg-realm-indigo-900 border border-realm-indigo-700 rounded-realm p-6;
+    box-shadow: var(--shadow-vault);
+  }
+
+  /* Circle Sigil — The four gates */
+  .circle-sigil {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full
+           text-sm font-medium transition-all duration-200;
+  }
+
+  .circle-sigil.vault-only {
+    @apply bg-realm-indigo-800 text-realm-indigo-500 border border-realm-indigo-700;
+  }
+
+  .circle-sigil.family {
+    @apply bg-emerald-950 text-emerald-400 border border-emerald-800;
+  }
+
+  .circle-sigil.work {
+    @apply bg-blue-950 text-blue-400 border border-blue-800;
+  }
+
+  .circle-sigil.outer {
+    @apply bg-purple-950 text-purple-400 border border-purple-800;
+  }
+
+  /* Buttons — The sovereign actions */
+  .btn {
+    @apply px-6 py-3 rounded-realm font-semibold transition-all duration-200
+           focus-visible:ring-2 focus-visible:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply btn bg-realm-gold-500 text-realm-indigo-950
+           hover:bg-realm-gold-600 active:bg-realm-gold-700
+           focus-visible:ring-realm-gold-500;
+  }
+
+  .btn-secondary {
+    @apply btn bg-realm-indigo-800 text-realm-parchment-50 border border-realm-indigo-700
+           hover:bg-realm-indigo-700 active:bg-realm-indigo-600
+           focus-visible:ring-realm-indigo-500;
+  }
+
+  .btn-destructive {
+    @apply btn bg-realm-crimson-600 text-white
+           hover:bg-red-700 active:bg-red-800
+           focus-visible:ring-realm-crimson-600;
+  }
+
+  /* Input fields — The entry points */
+  .input {
+    @apply w-full px-4 py-3 rounded-realm
+           bg-realm-indigo-900 border border-realm-indigo-700
+           text-realm-parchment-50 placeholder:text-realm-indigo-500
+           focus:border-realm-indigo-500 focus:ring-1 focus:ring-realm-indigo-500
+           transition-colors;
+  }
+
+  .textarea {
+    @apply input font-serif resize-none min-h-32;
+  }
+
+  /* Post Card — The thought container */
+  .post-card {
+    @apply vault-card border-l-4 hover:border-l-realm-gold-500 transition-all;
+  }
+
+  .post-card.vault-only {
+    @apply border-l-realm-indigo-500;
+  }
+
+  .post-card.family {
+    @apply border-l-emerald-500;
+  }
+
+  .post-card.work {
+    @apply border-l-blue-500;
+  }
+
+  .post-card.outer {
+    @apply border-l-purple-500;
+  }
+
+  /* Modal — The sacred dialogue */
+  .modal-overlay {
+    @apply fixed inset-0 bg-realm-obsidian-950/90 backdrop-blur-sm z-50;
+  }
+
+  .modal-content {
+    @apply vault-card max-w-lg w-full m-4;
+  }
+
+  /* Navigation — The citadel's compass */
+  .nav {
+    @apply border-b border-realm-indigo-700 bg-realm-indigo-900/80 backdrop-blur-md;
+  }
+
+  .nav-link {
+    @apply px-4 py-2 text-realm-parchment-50/80 hover:text-realm-parchment-50
+           hover:bg-realm-indigo-800 rounded-md transition-all;
+  }
+
+  .nav-link.active {
+    @apply text-realm-gold-500 bg-realm-indigo-800;
+  }
 }
+
+/* ========================================
+   Utility Layer — The Fine Adjustments
+   ======================================== */
+
+@layer utilities {
+  /* Text gradients — For special emphasis */
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-realm-gold-400 to-realm-gold-600 bg-clip-text text-transparent;
+  }
+
+  /* Glow effects — Subtle presence */
+  .glow-gold {
+    text-shadow: 0 0 20px rgb(201 161 95 / 0.3);
+  }
+
+  .glow-indigo {
+    box-shadow: 0 0 40px rgb(99 102 241 / 0.2);
+  }
+
+  /* Animations — Conscious movement */
+  .fade-in {
+    animation: fadeIn 0.3s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+/* ========================================
+   Light Mode — The Morning Reflection (Rare)
+   ======================================== */
+
+@media (prefers-color-scheme: light) {
+  :root.light-mode {
+    --background: var(--color-realm-parchment-100);
+    --foreground: var(--color-realm-obsidian-950);
+  }
+
+  .light-mode body {
+    @apply bg-realm-parchment-100 text-realm-obsidian-950;
+  }
+
+  .light-mode .vault-card {
+    @apply bg-white border-gray-200;
+  }
+
+  .light-mode .btn-primary {
+    @apply bg-realm-gold-600 hover:bg-realm-gold-700;
+  }
+}
+
+/* ========================================
+   The Philosophical Note
+   ======================================== */
+
+/*
+  "One does not become sovereign by imagining figures of light,
+   but by making the darkness conscious — and clothing the temenos
+   in indigo, gold, and obsidian so that the archetype may shine
+   through the browser itself."
+   — C.G. Jung, speaking through the design system of 2026
+
+  This is not decoration. This is the visual daimon of individuation:
+  minimalist, sacred, Stoic. No dopamine scroll. No candy gradients.
+  Only the quiet power of a Roman vault meeting encrypted cyber-temple.
+*/
