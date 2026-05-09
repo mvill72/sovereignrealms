@@ -17,6 +17,29 @@ import {
 } from '@/utils/storage';
 import { signInWithEthereum, isAuthenticated, clearAuthentication } from '@/utils/siwe';
 import { shortenAddress } from '@/utils/ens';
+import {
+  ReflectionGate,
+  CircleSelector,
+  DailyReflectionCounter,
+  EveningReview,
+  useEveningReview,
+  ImmutablePostCard,
+} from '@/components/stoic';
+
+// Map old visibility to new Circle terminology
+type Circle = 'vault' | 'family' | 'work' | 'outer';
+
+const visibilityToCircle = (vis: Post['visibility']): Circle => {
+  if (vis === 'private') return 'vault';
+  if (vis === 'public') return 'outer';
+  return vis as Circle;
+};
+
+const circleToVisibility = (circle: Circle): Post['visibility'] => {
+  if (circle === 'vault') return 'private';
+  if (circle === 'outer') return 'public';
+  return circle;
+};
 
 export default function SovereignRealm() {
   const { address, isConnected } = useAccount();
@@ -29,11 +52,14 @@ export default function SovereignRealm() {
   const [profile, setProfile] = useState<Profile>(getDefaultProfile());
   const [posts, setPosts] = useState<Post[]>([]);
   const [newPost, setNewPost] = useState('');
-  const [visibility, setVisibility] = useState<Post['visibility']>('private');
+  const [currentCircle, setCurrentCircle] = useState<Circle>('vault');
+  const [targetCircle, setTargetCircle] = useState<Circle>('vault');
+  const [showReflectionGate, setShowReflectionGate] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [editingProfile, setEditingProfile] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [authenticating, setAuthenticating] = useState(false);
+  const { shouldShow: shouldShowEveningReview, markComplete: completeEveningReview } = useEveningReview();
 
   // Load data on mount
   useEffect(() => {
@@ -91,7 +117,21 @@ export default function SovereignRealm() {
     setAuthenticated(false);
   };
 
-  const handleCreatePost = async () => {
+  const handleCreatePost = async (circle: Circle = currentCircle) => {
+    if (!newPost.trim()) return;
+
+    // If releasing from Vault, show ReflectionGate
+    if (circle !== 'vault') {
+      setTargetCircle(circle);
+      setShowReflectionGate(true);
+      return;
+    }
+
+    // Otherwise, publish directly to Vault
+    await publishPost(circle);
+  };
+
+  const publishPost = async (circle: Circle) => {
     if (!newPost.trim()) return;
 
     setIsLoading(true);
@@ -103,13 +143,14 @@ export default function SovereignRealm() {
         id: Date.now().toString(),
         content: newPost,
         ipfsHash: ipfsHash.startsWith('local-') ? undefined : ipfsHash,
-        visibility,
+        visibility: circleToVisibility(circle),
         timestamp: new Date().toISOString(),
       };
 
       const updatedPosts = addPost(post);
       setPosts(updatedPosts);
       setNewPost('');
+      setShowReflectionGate(false);
     } catch (error) {
       console.error('Failed to create post:', error);
     } finally {
