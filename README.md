@@ -211,6 +211,7 @@ See [REALM.md](./REALM.md) for detailed roadmap.
 - **[JUNGIAN_UI.md](./JUNGIAN_UI.md)** - **Jungian Archetypes** - The psychological layer (Hero's Call, Shadow confrontation, Wise Old One prompts)
 - **[ARCHETYPE_CHOICE.md](./ARCHETYPE_CHOICE.md)** - **The Sovereign Choice** - User-selected UI archetype at first entry (4 paths)
 - **[EXPANDED_ARCHETYPE_MANDALA.md](./EXPANDED_ARCHETYPE_MANDALA.md)** - **The Eightfold Path** - Expanded archetype system (8 distinct visual garments)
+- **[CSS_ARCHETYPE_SYSTEM.md](./CSS_ARCHETYPE_SYSTEM.md)** - **CSS Implementation** - Complete CSS system with custom properties, zero runtime cost
 
 ### Technical Integration
 - [WEB3_GUIDE.md](./WEB3_GUIDE.md) - Web3 integration guide
