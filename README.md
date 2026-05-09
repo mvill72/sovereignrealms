@@ -209,6 +209,7 @@ See [REALM.md](./REALM.md) for detailed roadmap.
 
 ## 🔒 Privacy & Security
 
+### Core Privacy
 - ✅ No analytics or tracking
 - ✅ No cookies or telemetry
 - ✅ All data stored locally
@@ -216,6 +217,16 @@ See [REALM.md](./REALM.md) for detailed roadmap.
 - ✅ Wallet-based auth (no passwords to leak)
 - ✅ SIWE sessions expire in 24h
 - ✅ Export your data anytime
+
+### ZK-Proof CircleKeys (v0.2+)
+- ✅ Built on Semaphore v4 (audited by PSE, March 2024)
+- ✅ All critical & high-severity findings resolved
+- ✅ Zero-knowledge membership proofs (no Circle member leaks)
+- ✅ Browser-native proof generation (<3s)
+- ✅ Instant revocation via Merkle tree updates
+- ✅ Nullifier tracking prevents proof replay
+
+See [CONTRACTS.md - Semaphore v4 Audit](./CONTRACTS.md#semaphore-v4-audit-the-verified-guardians) for full security details.
 
 ## 🤝 Contributing
 

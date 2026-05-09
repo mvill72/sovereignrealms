@@ -155,6 +155,8 @@ forge init contracts
 > **For the complete cryptographic and philosophical deep-dive on CircleKeys**, see [CONTRACTS.md - CircleKeys Deep-Dive](./CONTRACTS.md#circlekeys-deep-dive-the-cryptographic-guardians)
 >
 > **For the ZK-Proof evolution (v0.2+)** using Semaphore v4, see [CONTRACTS.md - ZKCircleVerifier](./CONTRACTS.md#zkcircleverifier-the-invisible-daimons-of-sovereign-disclosure)
+>
+> **For security verification & audit details**, see [CONTRACTS.md - Semaphore v4 Audit](./CONTRACTS.md#semaphore-v4-audit-the-verified-guardians) - All critical/high findings resolved before deployment
 
 ### Phase 4: Real IPFS Integration
 ```bash
