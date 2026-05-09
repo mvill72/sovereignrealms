@@ -1,11 +1,14 @@
 /**
- * ArchetypeChooser — The Sovereign Choice
+ * ArchetypeChooser — The Sovereign Choice (Expanded Mandala)
  *
  * "The first act of sovereignty is not connecting the wallet —
  *  it is declaring how the Self wishes to be seen by itself."
  *
  * At the liminal threshold of first entry, the user chooses
  * which archetypal garment will color their daily Meditations.
+ *
+ * Eight distinct paths:
+ * - Stoic, Jungian, Anima, Shadow, Wise, Hero, Persona, Integrated
  *
  * No forced default. No corporate "recommended" theme.
  * Only the sovereign choosing their own mirror.
@@ -16,12 +19,13 @@
 import React, { useState } from 'react';
 
 interface Archetype {
-  id: 'stoic' | 'jungian' | 'anima' | 'balanced';
+  id: 'stoic' | 'jungian' | 'anima' | 'shadow' | 'wise' | 'hero' | 'persona' | 'integrated';
   name: string;
   description: string;
   colors: string;
   previewClass: string;
   philosophy: string;
+  icon: string;
   isDefault?: boolean;
 }
 
@@ -29,34 +33,74 @@ const archetypes: Archetype[] = [
   {
     id: 'stoic',
     name: 'The Stoic Citadel',
-    description: 'Discipline. Clarity. Finite reflections. No distractions.',
+    description: 'Discipline. Clarity. Finite reflections. The browser as pure inner sanctum.',
     colors: 'obsidian + burnished gold',
     previewClass: 'archetype-self',
     philosophy: 'The path of Marcus Aurelius — control what is yours, release what is not.',
+    icon: '🏛️',
   },
   {
     id: 'jungian',
-    name: 'The Archetypal Temenos',
-    description: 'Symbols. Shadow. The unconscious made conscious.',
+    name: 'The Jungian Temenos',
+    description: 'Symbols of the unconscious. Shadow work. Archetypes made visible.',
     colors: 'deep indigo + alchemical gold',
     previewClass: 'archetype-persona',
     philosophy: 'The path of Carl Jung — confront the archetypes, individuate through the psyche.',
+    icon: '🜁',
   },
   {
     id: 'anima',
     name: 'The Relational Bridge',
-    description: 'Warmth. Mirrored reflections. The soul that meets the other.',
+    description: 'Warmth. Mirrored reflections. The living tension of I and Thou.',
     colors: 'warm gold + flowing parchment',
     previewClass: 'archetype-anima',
     philosophy: 'The path of connection — Family and Work circles honored, the relational soul.',
+    icon: '💫',
   },
   {
-    id: 'balanced',
+    id: 'shadow',
+    name: 'The Shadow Guardian',
+    description: 'Privacy first. Revocation as power. Confront the darkness consciously.',
+    colors: 'obsidian + crimson warning',
+    previewClass: 'archetype-shadow',
+    philosophy: 'The path of privacy — guard what must remain hidden, burn what no longer serves.',
+    icon: '🌑',
+  },
+  {
+    id: 'wise',
+    name: 'The Wise Old One',
+    description: 'Evening review. Inner guidance. Every thought becomes a meditation.',
+    colors: 'parchment + muted indigo',
+    previewClass: 'archetype-wise',
+    philosophy: 'The path of reflection — daily examination, the inner guide always present.',
+    icon: '📜',
+  },
+  {
+    id: 'hero',
+    name: 'The Hero of Individuation',
+    description: 'The journey. Claim each Circle as a step toward wholeness.',
+    colors: 'growing gold rings',
+    previewClass: 'archetype-hero',
+    philosophy: 'The path of becoming — each Circle unlocked is a stage in the journey.',
+    icon: '⚔️',
+  },
+  {
+    id: 'persona',
+    name: 'The Persona Weaver',
+    description: 'Express the outer mask. Optional federation. Step into the agora when ready.',
+    colors: 'parchment + globe sigil',
+    previewClass: 'archetype-persona-weaver',
+    philosophy: 'The path of expression — the outer world as stage for the conscious persona.',
+    icon: '🎭',
+  },
+  {
+    id: 'integrated',
     name: 'The Integrated Self',
-    description: 'Stoic structure with Jungian depth — the path of wholeness.',
+    description: 'Wholeness. Stoic structure meets Jungian depth. The path of the sovereign.',
     colors: 'balanced indigo + gold',
-    previewClass: 'archetype-self',
-    philosophy: 'All paths united — discipline and depth, structure and soul.',
+    previewClass: 'archetype-integrated',
+    philosophy: 'All paths united — discipline and depth, structure and soul, privacy and expression.',
+    icon: '⚖️',
     isDefault: true,
   },
 ];
@@ -98,31 +142,21 @@ export function ArchetypeChooser({ onChosen }: ArchetypeChooserProps) {
           </p>
         </div>
 
-        {/* Archetype Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        {/* Archetype Grid — 4 columns on desktop, 2 on tablet, 1 on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {archetypes.map((archetype) => (
             <button
               key={archetype.id}
               onClick={() => setSelectedId(archetype.id)}
-              className={`group p-8 text-left border-2 rounded-realm transition-all duration-300 ${
+              className={`group p-6 text-left border-2 rounded-realm transition-all duration-300 flex flex-col h-full ${
                 selectedId === archetype.id
-                  ? 'border-realm-gold-500 bg-realm-indigo-900/50 scale-105'
+                  ? 'border-realm-gold-500 bg-realm-indigo-900/50 scale-105 ring-2 ring-realm-gold-400/30'
                   : 'border-realm-indigo-700 hover:border-realm-indigo-500 hover:bg-realm-indigo-900/30'
               }`}
             >
-              {/* Color Preview Bar */}
-              <div className="flex items-center gap-2 mb-6">
-                <div className={`h-3 flex-1 rounded-full ${archetype.previewClass}`}
-                     style={{
-                       background: archetype.id === 'stoic'
-                         ? 'linear-gradient(to right, #050505, #c9a15f)'
-                         : archetype.id === 'jungian'
-                         ? 'linear-gradient(to right, #6366f1, #c9a15f)'
-                         : archetype.id === 'anima'
-                         ? 'linear-gradient(to right, #d4af77, #f5eede)'
-                         : 'linear-gradient(to right, #6366f1, #c9a15f, #d4af77)'
-                     }}
-                />
+              {/* Icon + Badge */}
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-3xl">{archetype.icon}</span>
                 {archetype.isDefault && (
                   <span className="text-xs font-mono text-realm-gold-500 px-2 py-1 bg-realm-gold-500/10 rounded">
                     Recommended
@@ -130,28 +164,44 @@ export function ArchetypeChooser({ onChosen }: ArchetypeChooserProps) {
                 )}
               </div>
 
+              {/* Color Preview Bar */}
+              <div className={`h-2 w-full rounded-full mb-4 transition-all group-hover:scale-105 ${archetype.previewClass}`}
+                   style={{
+                     background: archetype.id === 'stoic'
+                       ? 'linear-gradient(to right, #050505, #c9a15f)'
+                       : archetype.id === 'jungian'
+                       ? 'linear-gradient(to right, #6366f1, #c9a15f)'
+                       : archetype.id === 'anima'
+                       ? 'linear-gradient(to right, #d4af77, #f5eede)'
+                       : archetype.id === 'shadow'
+                       ? 'linear-gradient(to right, #050505, #9f1239)'
+                       : archetype.id === 'wise'
+                       ? 'linear-gradient(to right, #f5eede, #6366f1)'
+                       : archetype.id === 'hero'
+                       ? 'linear-gradient(to right, #967439, #c9a15f, #d4af77)'
+                       : archetype.id === 'persona'
+                       ? 'linear-gradient(to right, #f5eede, #c9a15f)'
+                       : 'linear-gradient(to right, #6366f1, #c9a15f, #d4af77)'
+                   }}
+              />
+
               {/* Title */}
-              <h3 className="font-serif text-2xl mb-3 text-realm-gold-500">
+              <h3 className="font-serif text-lg mb-2 text-realm-gold-500 min-h-[3.5rem]">
                 {archetype.name}
               </h3>
 
               {/* Description */}
-              <p className="text-sm text-realm-parchment-50/80 mb-4 leading-relaxed">
+              <p className="text-xs text-realm-parchment-50/80 mb-3 leading-relaxed flex-1">
                 {archetype.description}
               </p>
 
-              {/* Philosophy */}
-              <p className="text-xs italic text-realm-parchment-50/60 mb-4">
-                {archetype.philosophy}
-              </p>
-
               {/* Color Label */}
-              <div className="flex items-center justify-between pt-4 border-t border-realm-indigo-700">
+              <div className="flex items-center justify-between pt-3 border-t border-realm-indigo-700 mt-auto">
                 <span className="text-xs font-mono text-realm-gold-400">
                   {archetype.colors}
                 </span>
                 {selectedId === archetype.id && (
-                  <span className="text-realm-gold-500 text-lg">✓</span>
+                  <span className="text-realm-gold-500 text-sm">✓</span>
                 )}
               </div>
             </button>
@@ -175,11 +225,7 @@ export function ArchetypeChooser({ onChosen }: ArchetypeChooserProps) {
               </div>
               <div className="w-32 h-32 rounded-realm border-2 border-realm-gold-500 flex items-center justify-center bg-realm-indigo-900">
                 <div className={`w-full h-full ${selectedArchetype.previewClass} flex items-center justify-center`}>
-                  <span className="text-4xl">
-                    {selectedArchetype.id === 'stoic' ? '🏛️' :
-                     selectedArchetype.id === 'jungian' ? '🜁' :
-                     selectedArchetype.id === 'anima' ? '💫' : '⚖️'}
-                  </span>
+                  <span className="text-5xl">{selectedArchetype.icon}</span>
                 </div>
               </div>
             </div>
