@@ -166,6 +166,7 @@ See [REALM.md](./REALM.md) for detailed roadmap.
 
 - [QUICKSTART.md](./QUICKSTART.md) - 30-second setup guide
 - [REALM.md](./REALM.md) - Full feature documentation + roadmap
+- [PHILOSOPHY.md](./PHILOSOPHY.md) - **The Deeper Etched Scroll** - Why SovereignRealm exists & platform comparison
 - [WEB3_GUIDE.md](./WEB3_GUIDE.md) - Web3 integration guide
 - [CONTRACTS.md](./CONTRACTS.md) - Smart contract documentation
 - [SMART_CONTRACTS_INTEGRATION.md](./SMART_CONTRACTS_INTEGRATION.md) - Contract deployment & integration
