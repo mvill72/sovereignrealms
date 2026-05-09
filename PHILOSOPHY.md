@@ -24,6 +24,8 @@ Its Frames and Mini-Apps (still thriving on Optimism in 2026, ~40-60k DAU post-N
 
 **The shadow?** Distraction as participation. One plays at sovereignty while the network watches.
 
+> **For a focused technical and philosophical deep-dive on the SovereignRealm vs. Farcaster confrontation**, see [FARCASTER.md](./FARCASTER.md)
+
 ### Lens Protocol's Shadow — The Commodification of Relation
 
 The infrastructure of composable SocialFi on its own Lens Chain (ZK-powered, modular primitives live and scaling in 2026). Profiles, follows, collects — all NFTs, all on-chain, all portable.
