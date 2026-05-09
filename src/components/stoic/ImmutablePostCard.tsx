@@ -12,6 +12,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { WiseOldOnePrompt } from '@/components/archetypes';
 
 type Circle = 'vault' | 'family' | 'work' | 'outer';
 
@@ -122,55 +123,60 @@ export function ImmutablePostCard({
       </div>
 
       {/* Footer */}
-      <footer className="flex justify-between items-center pt-4 border-t border-realm-indigo-700">
-        {/* Timestamp */}
-        <time className="text-sm text-realm-indigo-500" dateTime={post.createdAt.toISOString()}>
-          {timeAgo}
-        </time>
+      <footer className="pt-4 border-t border-realm-indigo-700">
+        <div className="flex justify-between items-center">
+          {/* Timestamp */}
+          <time className="text-sm text-realm-indigo-500" dateTime={post.createdAt.toISOString()}>
+            {timeAgo}
+          </time>
 
-        {/* Actions (Shown on Hover) */}
-        <div
-          className={`flex gap-2 transition-opacity duration-200 ${
-            showActions ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          {/* Refine in Vault */}
-          {onRefine && post.circle !== 'vault' && (
-            <button
-              onClick={() => onRefine(post.id)}
-              className="text-sm text-realm-indigo-500 hover:text-realm-indigo-400 transition-colors"
-              title="Return to Vault for refinement"
-            >
-              ✏️ Refine
-            </button>
-          )}
+          {/* Actions (Shown on Hover) */}
+          <div
+            className={`flex gap-2 transition-opacity duration-200 ${
+              showActions ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            {/* Refine in Vault */}
+            {onRefine && post.circle !== 'vault' && (
+              <button
+                onClick={() => onRefine(post.id)}
+                className="text-sm text-realm-indigo-500 hover:text-realm-indigo-400 transition-colors"
+                title="Return to Vault for refinement"
+              >
+                ✏️ Refine
+              </button>
+            )}
 
-          {/* Release to Next Circle */}
-          {onRelease && canRelease && (
-            <button
-              onClick={() => onRelease(post.id, nextCircle[post.circle]!)}
-              className="text-sm text-realm-gold-500 hover:text-realm-gold-400 transition-colors"
-              title={`Release to ${nextCircle[post.circle]}`}
-            >
-              → Release
-            </button>
-          )}
+            {/* Release to Next Circle */}
+            {onRelease && canRelease && (
+              <button
+                onClick={() => onRelease(post.id, nextCircle[post.circle]!)}
+                className="text-sm text-realm-gold-500 hover:text-realm-gold-400 transition-colors"
+                title={`Release to ${nextCircle[post.circle]}`}
+              >
+                → Release
+              </button>
+            )}
 
-          {/* Burn (Destructive) */}
-          {onBurn && (
-            <button
-              onClick={() => {
-                if (confirm('Burn this reflection permanently? This cannot be undone.')) {
-                  onBurn(post.id);
-                }
-              }}
-              className="text-sm text-realm-crimson-600 hover:text-red-400 transition-colors"
-              title="Burn this reflection (permanent)"
-            >
-              🔥 Burn
-            </button>
-          )}
+            {/* Burn (Destructive) */}
+            {onBurn && (
+              <button
+                onClick={() => {
+                  if (confirm('Burn this reflection permanently? This cannot be undone.')) {
+                    onBurn(post.id);
+                  }
+                }}
+                className="text-sm text-realm-crimson-600 hover:text-red-400 transition-colors"
+                title="Burn this reflection (permanent)"
+              >
+                🔥 Burn
+              </button>
+            )}
+          </div>
         </div>
+
+        {/* Wise Old One Reflection Prompt */}
+        <WiseOldOnePrompt circle={post.circle} />
       </footer>
 
       {/* Subtle Parchment Grain Effect */}

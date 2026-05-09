@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Inter, Space_Grotesk } from "next/font/google";
 import { Web3Provider } from "@/providers/Web3Provider";
+import { ArchetypeProvider } from "@/components/archetypes";
 import "./globals.css";
 
 /**
@@ -46,7 +47,11 @@ export default function RootLayout({
       className={`${instrumentSerif.variable} ${inter.variable} ${spaceGrotesk.variable} h-full`}
     >
       <body className="min-h-full flex flex-col">
-        <Web3Provider>{children}</Web3Provider>
+        <Web3Provider>
+          <ArchetypeProvider>
+            {children}
+          </ArchetypeProvider>
+        </Web3Provider>
       </body>
     </html>
   );
