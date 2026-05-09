@@ -273,18 +273,33 @@ MIT - Use freely, own completely.
 
 ## 🌐 Deploy
 
-### Vercel (Recommended)
+### Quick Deploy (5 Minutes) ⚡
+
+**See [DEPLOY_NOW.md](./DEPLOY_NOW.md) for fastest deployment path.**
+
+1. Get WalletConnect Project ID (2 min)
+2. Push to GitHub (1 min)
+3. Deploy to Vercel (2 min)
+
+**Your citadel will be live at: `your-app.vercel.app`**
+
+### Full Deployment Guide
+
+**See [DEPLOYMENT.md](./DEPLOYMENT.md) for:**
+- Complete Vercel setup
+- Custom domain configuration
+- Smart contract deployment to Sepolia/Base
+- Environment variable configuration
+- Post-deployment checklist
+- Monitoring & analytics setup
+
+### Pre-Deployment Check
+
 ```bash
-vercel deploy
+./scripts/pre-deploy-check.sh
 ```
 
-### Self-Host
-```bash
-bun run build
-bun run start
-```
-
-Or use Docker (coming soon).
+Verifies build, TypeScript, security, and documentation before deploy.
 
 ---
 
