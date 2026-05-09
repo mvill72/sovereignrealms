@@ -1,16 +1,33 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Instrument_Serif, Inter, Space_Grotesk } from "next/font/google";
 import { Web3Provider } from "@/providers/Web3Provider";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+/**
+ * SovereignRealm Typography — The Sacred Scripts
+ * Serif: Instrument Serif — For post body, the scroll of Aurelius
+ * Sans: Inter — Clean UI labels
+ * Mono: Space Grotesk — CID hashes & contract addresses
+ */
+
+const instrumentSerif = Instrument_Serif({
+  weight: ["400"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -26,7 +43,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${instrumentSerif.variable} ${inter.variable} ${spaceGrotesk.variable} h-full`}
     >
       <body className="min-h-full flex flex-col">
         <Web3Provider>{children}</Web3Provider>
