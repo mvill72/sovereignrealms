@@ -149,6 +149,13 @@ See `.env.example` for all options.
 - ✅ Phase 3: Smart contracts (Profile NFTs, Circle tokens) - **READY TO DEPLOY**
   - ✨ v0.2: ZK-Proof CircleKeys with Semaphore v4 - **READY TO DEPLOY**
 - ✅ Phase 5: Federation (ActivityPub, Fediverse) - **COMPLETE**
+- ✅ Phase 7: Complete UI System (8 Archetypes, Shadow Integration, Onboarding) - **COMPLETE**
+- 🚧 **Phase 8: Beta Launch (May–June 2026)** - **IN PREPARATION**
+  - Deploy contracts to Sepolia + Base testnet
+  - Invite 150–300 privacy/Web3/Stoic-aligned souls
+  - Weekly reflection prompts for feedback
+  - Shadow Journal + Burn Ritual testing
+  - See [BETA_LAUNCH.md](./BETA_LAUNCH.md) for complete Beta Threshold Mandala
 - 🚧 Phase 4: Real IPFS integration (web3.storage)
 - 🚧 Phase 6: E2E encryption (family vaults)
 
@@ -225,6 +232,7 @@ See [REALM.md](./REALM.md) for detailed roadmap.
 - [ZK_DEPLOYMENT_CHECKLIST.md](./ZK_DEPLOYMENT_CHECKLIST.md) - Pre-deployment security checklist for ZK CircleKeys
 - [SMART_CONTRACTS_INTEGRATION.md](./SMART_CONTRACTS_INTEGRATION.md) - Contract deployment & integration
 - [FEDERATION.md](./FEDERATION.md) - ActivityPub federation guide
+- **[BETA_LAUNCH.md](./BETA_LAUNCH.md)** - **Beta Threshold Mandala** - Beta launch guide (May–June 2026)
 
 ## 🔒 Privacy & Security
 
