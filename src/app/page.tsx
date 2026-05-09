@@ -26,6 +26,7 @@ import {
   ImmutablePostCard,
 } from '@/components/stoic';
 import { OnboardingFlow, useOnboardingStatus } from '@/components/onboarding';
+import { ShadowJournal, BurnRitualModal } from '@/components/shadow';
 
 // Map old visibility to new Circle terminology
 type Circle = 'vault' | 'family' | 'work' | 'outer';
@@ -62,6 +63,8 @@ export default function SovereignRealm() {
   const [authenticating, setAuthenticating] = useState(false);
   const { shouldShow: shouldShowEveningReview, markComplete: completeEveningReview } = useEveningReview();
   const { shouldShowOnboarding, completeOnboarding } = useOnboardingStatus();
+  const [showShadowJournal, setShowShadowJournal] = useState(false);
+  const [burnRitualPost, setBurnRitualPost] = useState<{ id: string; content: string } | null>(null);
 
   // Load data on mount
   useEffect(() => {
@@ -188,8 +191,17 @@ export default function SovereignRealm() {
   };
 
   const handleBurnPost = (postId: string) => {
-    const updatedPosts = deletePost(postId);
-    setPosts(updatedPosts);
+    const post = posts.find(p => p.id === postId);
+    if (!post) return;
+
+    // Open burn ritual modal
+    setBurnRitualPost({ id: postId, content: post.content });
+  };
+
+  const handleBurnRitualComplete = () => {
+    // Reload posts from storage
+    setPosts(loadPosts());
+    setBurnRitualPost(null);
   };
 
   const handleUpdateProfile = () => {
