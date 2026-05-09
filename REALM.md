@@ -153,6 +153,8 @@ forge init contracts
 - Decentralized ENS-style usernames
 
 > **For the complete cryptographic and philosophical deep-dive on CircleKeys**, see [CONTRACTS.md - CircleKeys Deep-Dive](./CONTRACTS.md#circlekeys-deep-dive-the-cryptographic-guardians)
+>
+> **For the ZK-Proof evolution (v0.2+)** using Semaphore v4, see [CONTRACTS.md - ZKCircleVerifier](./CONTRACTS.md#zkcircleverifier-the-invisible-daimons-of-sovereign-disclosure)
 
 ### Phase 4: Real IPFS Integration
 ```bash
