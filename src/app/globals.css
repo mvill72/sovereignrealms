@@ -177,7 +177,12 @@
   }
 
   .textarea {
-    @apply input font-serif resize-none min-h-32;
+    @apply w-full px-4 py-3 rounded-realm
+           bg-realm-indigo-900 border border-realm-indigo-700
+           text-realm-parchment-50 placeholder:text-realm-indigo-500
+           focus:border-realm-indigo-500 focus:ring-1 focus:ring-realm-indigo-500
+           transition-colors
+           font-serif resize-none min-h-32;
   }
 
   /* Post Card — The thought container */
