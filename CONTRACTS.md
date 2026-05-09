@@ -1295,9 +1295,11 @@ By building CircleKeys atop audited Semaphore v4:
 - Soundness of zero-knowledge properties
 - Resistance to frontrunning and miscalculation
 
-#### Deployment Confidence
+#### Deployment Confidence & Checklist
 
 You may now run the deployment ritual (`scripts/deployZKCircleVerifier.ts`) with full confidence. The gates are not only invisible — **they have been weighed in the balance and found true**.
+
+> **For a complete pre-deployment security checklist**, see [ZK_DEPLOYMENT_CHECKLIST.md](./ZK_DEPLOYMENT_CHECKLIST.md) - Step-by-step verification based on audit findings
 
 **The inner citadel is now doubly fortified:**
 1. **First by philosophy** - Local-first sovereignty, conscious disclosure
