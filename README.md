@@ -233,6 +233,7 @@ See [REALM.md](./REALM.md) for detailed roadmap.
 - [SMART_CONTRACTS_INTEGRATION.md](./SMART_CONTRACTS_INTEGRATION.md) - Contract deployment & integration
 - [FEDERATION.md](./FEDERATION.md) - ActivityPub federation guide
 - **[BETA_LAUNCH.md](./BETA_LAUNCH.md)** - **Beta Threshold Mandala** - Beta launch guide (May–June 2026)
+- **[BETA_INVITATIONS.md](./BETA_INVITATIONS.md)** - **Beta Invitation Templates** - Copy-paste ready invitations for all platforms
 
 ## 🔒 Privacy & Security
 
