@@ -8,6 +8,8 @@ export interface Post {
   visibility: 'private' | 'family' | 'work' | 'public';
   timestamp: string;
   owner?: string;
+  shadowStatus?: 'integrated' | 'confronted';  // Shadow archetype integration
+  shadowNote?: string;  // Reflection on why it was integrated
 }
 
 export interface Profile {
@@ -122,6 +124,49 @@ export function exportAllData() {
 export function importData(data: ReturnType<typeof exportAllData>): void {
   if (data.profile) saveProfile(data.profile);
   if (data.posts) savePosts(data.posts);
+}
+
+/**
+ * Integrate post into Shadow Journal (instead of burning)
+ */
+export function integratePostIntoShadow(postId: string, reflectionNote: string): Post[] {
+  const posts = loadPosts();
+  const updatedPosts = posts.map(p =>
+    p.id === postId
+      ? { ...p, shadowStatus: 'integrated' as const, shadowNote: reflectionNote, visibility: 'private' as const }
+      : p
+  );
+  savePosts(updatedPosts);
+  return updatedPosts;
+}
+
+/**
+ * Mark post as confronted (acknowledged shadow content)
+ */
+export function markPostAsConfronted(postId: string): Post[] {
+  const posts = loadPosts();
+  const updatedPosts = posts.map(p =>
+    p.id === postId
+      ? { ...p, shadowStatus: 'confronted' as const }
+      : p
+  );
+  savePosts(updatedPosts);
+  return updatedPosts;
+}
+
+/**
+ * Get all shadow posts (integrated or confronted)
+ */
+export function getShadowPosts(): Post[] {
+  const posts = loadPosts();
+  return posts.filter(p => p.shadowStatus === 'integrated' || p.shadowStatus === 'confronted');
+}
+
+/**
+ * Remove post from shadow journal (truly burn it)
+ */
+export function removeShadowPost(postId: string): Post[] {
+  return deletePost(postId);
 }
 
 /**
