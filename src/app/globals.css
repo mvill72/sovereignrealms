@@ -16,9 +16,11 @@
   --color-realm-indigo-900: #12123f;   /* Primary background */
   --color-realm-indigo-800: #1a1a5c;   /* Card surfaces */
   --color-realm-indigo-700: #2a2a7a;   /* Hover states */
+  --color-realm-indigo-600: #3a3a8a;   /* Active states */
   --color-realm-indigo-500: #6366f1;   /* Active Circle accents */
 
   /* Gold — The Sovereign Sigil */
+  --color-realm-gold-700: #967439;     /* Active / pressed state */
   --color-realm-gold-600: #b38a4b;     /* Hover / focus */
   --color-realm-gold-500: #c9a15f;     /* Primary brand gold */
   --color-realm-gold-400: #d4af77;     /* Burnished sigils, verified actions */
@@ -33,6 +35,10 @@
 
   /* Crimson — The Stoic Warning */
   --color-realm-crimson-600: #9f1239;  /* Revoke / burn key */
+
+  /* Red — Destructive actions */
+  --color-red-700: #b91c1c;  /* Hover state for destructive buttons */
+  --color-red-800: #991b1b;  /* Active state for destructive buttons */
 
   /* ========================================
      Typography — The Sacred Scripts
