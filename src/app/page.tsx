@@ -311,8 +311,12 @@ export default function SovereignRealm() {
                 🔓 Sign Out
               </button>
             )}
+            <ReportIssueButton />
             <button onClick={handleExportData} className="btn-ghost">
               📦 Export
+            </button>
+            <button onClick={() => setShowSettings(true)} className="btn-ghost">
+              ⚙️ Settings
             </button>
             <ConnectButton />
           </div>
