@@ -17,6 +17,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { LiveArchetypePreview } from './LiveArchetypePreview';
 
 interface Archetype {
   id: 'stoic' | 'jungian' | 'anima' | 'shadow' | 'wise' | 'hero' | 'persona' | 'integrated';
@@ -208,7 +209,7 @@ export function ArchetypeChooser({ onChosen }: ArchetypeChooserProps) {
           ))}
         </div>
 
-        {/* Selected Preview */}
+        {/* Selected Preview with Live Sample */}
         {selectedArchetype && (
           <div className="vault-card mb-8 p-8 border-2 border-realm-gold-500/30">
             <div className="flex items-start gap-6">
@@ -219,11 +220,17 @@ export function ArchetypeChooser({ onChosen }: ArchetypeChooserProps) {
                 <p className="font-serif text-2xl mb-3">
                   {selectedArchetype.name}
                 </p>
-                <p className="text-sm text-realm-parchment-50/70">
+                <p className="text-sm text-realm-parchment-50/70 mb-4">
                   {selectedArchetype.philosophy}
                 </p>
+
+                {/* Live Preview */}
+                <div className="mt-4 pt-4 border-t border-realm-indigo-700">
+                  <p className="text-xs text-realm-parchment-50/50 mb-2">Preview:</p>
+                  <LiveArchetypePreview archetypeId={selectedArchetype.id} />
+                </div>
               </div>
-              <div className="w-32 h-32 rounded-realm border-2 border-realm-gold-500 flex items-center justify-center bg-realm-indigo-900">
+              <div className="w-32 h-32 rounded-realm border-2 border-realm-gold-500 flex items-center justify-center bg-realm-indigo-900 shrink-0">
                 <div className={`w-full h-full ${selectedArchetype.previewClass} flex items-center justify-center`}>
                   <span className="text-5xl">{selectedArchetype.icon}</span>
                 </div>
