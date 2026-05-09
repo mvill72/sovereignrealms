@@ -1090,6 +1090,92 @@ NEXT_PUBLIC_ZK_VERIFIER_CONTRACT=0x...
 NEXT_PUBLIC_SEMAPHORE_ADDRESS=0x...
 ```
 
+### Merkle Tree Synchronization
+
+To keep the Semaphore groups in sync with CircleKeys mints/burns, you need a synchronization mechanism:
+
+#### Option 1: Off-Chain Indexer (Recommended)
+
+Use The Graph or a custom indexer to listen for CircleKeys events:
+
+```typescript
+// Example: Listen for CircleKey mints
+circleKeys.on('KeyGranted', async (circleId, member, event) => {
+  // 1. Derive member's Semaphore identity commitment
+  const identityCommitment = await deriveIdentityCommitment(member);
+
+  // 2. Call ZKCircleVerifier to add to Semaphore group
+  await zkVerifier.addMember(circleId, identityCommitment);
+
+  console.log(`Added ${member} to Circle ${circleId} Merkle tree`);
+});
+
+// Listen for revocations
+circleKeys.on('KeyRevoked', async (circleId, member, event) => {
+  const identityCommitment = await deriveIdentityCommitment(member);
+  const merkleProof = await fetchMerkleProof(circleId, identityCommitment);
+
+  await zkVerifier.removeMember(circleId, identityCommitment, merkleProof);
+
+  console.log(`Removed ${member} from Circle ${circleId} Merkle tree`);
+});
+```
+
+#### Option 2: On-Chain Updater Contract
+
+Create a contract that listens to CircleKeys events and automatically updates the Semaphore group:
+
+```solidity
+contract CircleKeysSync {
+    ICircleKeys public circleKeys;
+    IZKCircleVerifier public zkVerifier;
+
+    // Called by sovereign after granting CircleKey
+    function syncMemberAdd(
+        uint256 circleId,
+        address member,
+        uint256 identityCommitment
+    ) external onlyOwner {
+        require(circleKeys.hasAccess(circleId, member), "Member not in CircleKeys");
+        zkVerifier.addMember(circleId, identityCommitment);
+    }
+
+    // Called by sovereign after revoking CircleKey
+    function syncMemberRemove(
+        uint256 circleId,
+        address member,
+        uint256 identityCommitment,
+        uint256[] calldata merkleProof
+    ) external onlyOwner {
+        require(!circleKeys.hasAccess(circleId, member), "Member still in CircleKeys");
+        zkVerifier.removeMember(circleId, identityCommitment, merkleProof);
+    }
+}
+```
+
+#### Identity Commitment Derivation
+
+Users derive their Semaphore identity from wallet signature (deterministic, private):
+
+```typescript
+import { Identity } from '@semaphore-protocol/identity';
+
+async function deriveIdentityCommitment(walletAddress: string) {
+  // User signs a message (same message every time = deterministic)
+  const signature = await walletClient.signMessage({
+    message: 'SovereignRealm ZK Identity'
+  });
+
+  // Create Semaphore identity from signature
+  const identity = new Identity(signature);
+
+  // Return commitment (public, can be added to Merkle tree)
+  return identity.commitment;
+}
+```
+
+**Important**: The identity commitment is public (goes on-chain in Merkle tree), but the identity itself (derived from signature) stays private in the user's browser.
+
 ### The Invisible Gate
 
 **The Self no longer merely guards the gate.**
