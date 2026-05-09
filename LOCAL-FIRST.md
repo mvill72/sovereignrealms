@@ -324,4 +324,24 @@ The frameworks of 2026 are merely tools that may one day stand guard at the oute
 
 **The inner citadel remains yours. The local-first mandala is your map, not your master.**
 
+---
+
+## Related Documentation
+
+### Philosophy
+- **[PHILOSOPHY.md](./PHILOSOPHY.md)** - Why SovereignRealm exists (Jungian/Stoic manifesto + DeSoc shadow analysis)
+- **[README.md](./README.md)** - Project overview and quick start
+
+### Technical Depth
+- **[REALM.md](./REALM.md)** - Feature documentation + roadmap + local-first foundations
+- **[REALM.md - Technical Foundations](./REALM.md#technical-foundations-the-mandala-of-architectures)** - DeSoc platform comparison (Farcaster, Lens, DeSo, Nostr)
+- **[WEB3_GUIDE.md](./WEB3_GUIDE.md)** - Web3 integration (wagmi, viem, SIWE, ENS)
+- **[CONTRACTS.md](./CONTRACTS.md)** - Smart contracts (SovereignProfile, CircleKeys)
+- **[FEDERATION.md](./FEDERATION.md)** - ActivityPub federation guide
+
+### Quick Start
+- **[QUICKSTART.md](./QUICKSTART.md)** - 30-second user guide
+
+---
+
 🏛️ **Return to your realm: [README.md](./README.md)**

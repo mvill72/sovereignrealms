@@ -193,22 +193,33 @@ Join the others to broadcast. Join SovereignRealm to *become* before you broadca
 
 ---
 
-## For the Architects: The Technical Mandala
+## For the Architects: The Technical Mandalas
 
-This document presents the philosophical vision. For the **detailed technical comparison** of architectures (storage models, identity mechanisms, privacy systems, scalability approaches, and smart contract depth across all five platforms), see:
+This document presents the philosophical vision. For the **detailed technical comparisons**, see:
 
+### DeSoc Platform Comparison
 > **[REALM.md - Technical Foundations: The Mandala of Architectures](./REALM.md#technical-foundations-the-mandala-of-architectures)**
 
-There you will find the complete technical appendix comparing:
-- Core architecture decisions
-- Storage & sync models
-- Identity & authentication systems
-- Privacy & encryption approaches
-- Scalability paradigms
-- Smart contract integration depth
-- Development philosophies
+Complete technical comparison across all five platforms:
+- Core architecture decisions (hybrid, L1, ZK, relay, local-first)
+- Storage & sync models (hubs, on-chain, relays, browser vault)
+- Identity & authentication systems (FID, NFT Profile, on-chain, pubkey, wallet)
+- Privacy & encryption approaches (public-by-design vs private-by-default)
+- Scalability paradigms (Snapchain, ZK horizontal, infinite-state L1, relay multiplication)
+- Smart contract integration depth (minimal registries vs modular primitives vs none)
+- Development philosophies (sufficient decentralization vs infrastructure-first vs minimalist)
 
-**The philosophy reveals the *why*. The technical mandala reveals the *how*.**
+### Local-First Framework Comparison
+> **[LOCAL-FIRST.md - The Local-First Mandala](./LOCAL-FIRST.md)**
+
+Browser-native architecture & 2026 framework landscape:
+- Current SovereignRealm stack (browser primitives, Web Crypto, IndexedDB)
+- Evolution path (RxDB, Yjs, Automerge, Zero, PowerSync)
+- The Seven Ideals of local-first software
+- Integration decision matrix
+- Technical sovereignty principles
+
+**The philosophy reveals the *why*. The technical mandalas reveal the *how*.**
 
 ---
 
