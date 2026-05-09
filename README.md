@@ -147,6 +147,7 @@ See `.env.example` for all options.
 - ✅ Phase 1: Local MVP with content addressing
 - ✅ Phase 2: Web3 identity (wallet + ENS + SIWE)
 - ✅ Phase 3: Smart contracts (Profile NFTs, Circle tokens) - **READY TO DEPLOY**
+  - ✨ v0.2: ZK-Proof CircleKeys with Semaphore v4 - **READY TO DEPLOY**
 - ✅ Phase 5: Federation (ActivityPub, Fediverse) - **COMPLETE**
 - 🚧 Phase 4: Real IPFS integration (web3.storage)
 - 🚧 Phase 6: E2E encryption (family vaults)
