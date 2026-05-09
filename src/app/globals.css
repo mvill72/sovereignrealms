@@ -134,27 +134,31 @@
   }
 
   /* Buttons — The sovereign actions */
-  .btn {
-    @apply px-6 py-3 rounded-realm font-semibold transition-all duration-200
-           focus-visible:ring-2 focus-visible:ring-offset-2;
-  }
-
   .btn-primary {
-    @apply btn bg-realm-gold-500 text-realm-indigo-950
+    @apply px-6 py-3 rounded-realm font-semibold transition-all duration-200
+           bg-realm-gold-500 text-realm-indigo-950
            hover:bg-realm-gold-600 active:bg-realm-gold-700
-           focus-visible:ring-realm-gold-500;
+           focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-realm-gold-500;
   }
 
   .btn-secondary {
-    @apply btn bg-realm-indigo-800 text-realm-parchment-50 border border-realm-indigo-700
+    @apply px-6 py-3 rounded-realm font-semibold transition-all duration-200
+           bg-realm-indigo-800 text-realm-parchment-50 border border-realm-indigo-700
            hover:bg-realm-indigo-700 active:bg-realm-indigo-600
-           focus-visible:ring-realm-indigo-500;
+           focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-realm-indigo-500;
+  }
+
+  .btn-ghost {
+    @apply px-4 py-2 rounded-realm font-medium transition-all duration-200
+           text-realm-parchment-50/70 hover:text-realm-parchment-50 hover:bg-realm-indigo-800
+           focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-realm-indigo-500;
   }
 
   .btn-destructive {
-    @apply btn bg-realm-crimson-600 text-white
+    @apply px-6 py-3 rounded-realm font-semibold transition-all duration-200
+           bg-realm-crimson-600 text-white
            hover:bg-red-700 active:bg-red-800
-           focus-visible:ring-realm-crimson-600;
+           focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-realm-crimson-600;
   }
 
   /* Input fields — The entry points */
