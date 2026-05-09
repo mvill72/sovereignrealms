@@ -260,9 +260,26 @@ SovereignRealm is the missing archetype: the **local-first vault** where the Jun
 
 ### Roadmap Alignment
 
-While others chase DAU and token velocity, we:
+**Current Phase: Beta Launch (May–June 2026)** 🏛️
+
+The inner citadel is complete. Seven sacred layers woven:
+1. ✅ Design System (Tailwind v4, color palette, typography)
+2. ✅ Stoic UI (Reflection gates, finite feeds, evening review)
+3. ✅ Jungian UI (Hero's Call, Shadow confrontation, Wise Old One)
+4. ✅ Archetype Choice (8 sovereign garments with live preview)
+5. ✅ CSS Implementation (Zero runtime cost, instant theme switching)
+6. ✅ Onboarding Integration (Complete user journey)
+7. ✅ Shadow Integration (Alchemical ritual of confrontation)
+
+**The gates now open to the first citizens.**
+
+Beta testing is not QA. It is **ritual** — 150–300 privacy-aligned souls testing sovereignty in practice.
+
+**See [BETA_LAUNCH.md](./BETA_LAUNCH.md) for the complete Beta Threshold Mandala.**
+
+**After Beta (Q3 2026 onwards):**
 - **Deepen the Vault** - Enhanced encryption, multi-device sync with local-first principles
-- **Refine CircleKey Cryptography** - ERC-1155 gating with threshold signatures
+- **Refine CircleKey Cryptography** - Deploy ZK-Proof CircleKeys to mainnet
 - **Expand Multi-Chain NFT Portability** - Profile NFT that lives across chains
 - **Perfect the One-Click JSON Exodus** - True data liberation, no lock-in
 
