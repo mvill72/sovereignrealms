@@ -156,6 +156,8 @@ forge init contracts
 >
 > **For the ZK-Proof evolution (v0.2+)** using Semaphore v4, see [CONTRACTS.md - ZKCircleVerifier](./CONTRACTS.md#zkcircleverifier-the-invisible-daimons-of-sovereign-disclosure)
 >
+> **For circuit-level cryptography details**, see [CONTRACTS.md - Semaphore v4 Circuit Deep-Dive](./CONTRACTS.md#semaphore-v4-circuit-deep-dive-the-alchemical-heart) - Understanding the Circom proof system
+>
 > **For security verification & audit details**, see [CONTRACTS.md - Semaphore v4 Audit](./CONTRACTS.md#semaphore-v4-audit-the-verified-guardians) - All critical/high findings resolved before deployment
 
 ### Phase 4: Real IPFS Integration

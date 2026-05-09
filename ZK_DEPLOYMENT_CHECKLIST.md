@@ -12,6 +12,7 @@ This checklist ensures your ZKCircleVerifier deployment follows the audited Sema
 - [ ] Verify Semaphore address from official docs: https://docs.semaphore.pse.dev/deployed-contracts
 - [ ] Review audit findings: All critical/high issues resolved (March 2024 audit)
 - [ ] Confirm you're using stable v4 release (not beta)
+- [ ] Optional: Review circuit details in CONTRACTS.md (understand Circom proof system)
 
 ### 2. Contract Review
 - [ ] Read `contracts/ZKCircleVerifier.sol` completely
