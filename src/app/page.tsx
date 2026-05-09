@@ -163,6 +163,33 @@ export default function SovereignRealm() {
     setPosts(updatedPosts);
   };
 
+  const handleRefinePost = (postId: string) => {
+    // Move post back to Vault (change visibility to 'private')
+    const post = posts.find(p => p.id === postId);
+    if (!post) return;
+
+    const updatedPost = { ...post, visibility: 'private' as Post['visibility'] };
+    const updatedPosts = posts.map(p => p.id === postId ? updatedPost : p);
+
+    // Update storage
+    localStorage.setItem('sovereign_posts', JSON.stringify(updatedPosts));
+    setPosts(updatedPosts);
+  };
+
+  const handleReleasePost = (postId: string, toCircle: Circle) => {
+    // Move post to new Circle (with ReflectionGate)
+    setTargetCircle(toCircle);
+    setShowReflectionGate(true);
+
+    // Store the post ID to update after reflection
+    (window as any).__pendingReleasePostId = postId;
+  };
+
+  const handleBurnPost = (postId: string) => {
+    const updatedPosts = deletePost(postId);
+    setPosts(updatedPosts);
+  };
+
   const handleUpdateProfile = () => {
     saveProfile(profile);
     setEditingProfile(false);
@@ -174,7 +201,7 @@ export default function SovereignRealm() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `sovereign-realm-export-${Date.now()}.json`;
+    a.download = `meditations-${Date.now()}.json`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -183,18 +210,30 @@ export default function SovereignRealm() {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
       e.preventDefault();
-      handleCreatePost();
+      handleCreatePost(currentCircle);
     }
   };
 
-  const getVisibilityIcon = (vis: Post['visibility']) => {
-    switch (vis) {
-      case 'private': return '🔒';
-      case 'family': return '👨‍👩‍👧';
-      case 'work': return '💼';
-      case 'public': return '🌐';
-    }
+  // Get post stats for evening review
+  const getPostStats = () => {
+    return {
+      vaultCount: posts.filter(p => p.visibility === 'private').length,
+      familyCount: posts.filter(p => p.visibility === 'family').length,
+      workCount: posts.filter(p => p.visibility === 'work').length,
+      outerCount: posts.filter(p => p.visibility === 'public').length,
+    };
   };
+
+  // Filter posts by current circle
+  const getFilteredPosts = () => {
+    const visibility = circleToVisibility(currentCircle);
+    if (currentCircle === 'vault') {
+      return posts.filter(p => p.visibility === 'private');
+    }
+    return posts.filter(p => p.visibility === visibility);
+  };
+
+  const filteredPosts = getFilteredPosts();
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white font-sans">
