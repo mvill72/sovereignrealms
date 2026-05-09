@@ -191,4 +191,25 @@ Join the others to broadcast. Join SovereignRealm to *become* before you broadca
 
 **The mandala is complete. The citadel awaits.**
 
+---
+
+## For the Architects: The Technical Mandala
+
+This document presents the philosophical vision. For the **detailed technical comparison** of architectures (storage models, identity mechanisms, privacy systems, scalability approaches, and smart contract depth across all five platforms), see:
+
+> **[REALM.md - Technical Foundations: The Mandala of Architectures](./REALM.md#technical-foundations-the-mandala-of-architectures)**
+
+There you will find the complete technical appendix comparing:
+- Core architecture decisions
+- Storage & sync models
+- Identity & authentication systems
+- Privacy & encryption approaches
+- Scalability paradigms
+- Smart contract integration depth
+- Development philosophies
+
+**The philosophy reveals the *why*. The technical mandala reveals the *how*.**
+
+---
+
 🏛️ **Enter your realm: [http://localhost:3000](http://localhost:3000)**

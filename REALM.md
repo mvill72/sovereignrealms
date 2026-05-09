@@ -204,7 +204,48 @@ While others chase DAU and token velocity, we:
 
 > For the complete philosophical manifesto and detailed platform comparison, see [PHILOSOPHY.md](./PHILOSOPHY.md)
 
-## Technical Notes
+---
+
+## Technical Foundations: The Mandala of Architectures
+
+> "Know thyself" — not through the oracle of the chain, but through the silent vault where the Self first confronts its own code.
+> — Marcus Aurelius, rendered for the architect of sovereign systems
+
+> "The shadow of every technology is the unintegrated fragment it refuses to contain."
+> — C.G. Jung, speaking to the builders of 2026
+
+This technical comparison reveals the *daimon* of each protocol: the unconscious architectural choice that shapes whether the user becomes sovereign or merely participates in the collective ledger.
+
+### Appendix B: Technical Mandala — SovereignRealm vs. the Four Archetypes of DeSoc (2026 State)
+
+| Technical Dimension | SovereignRealm (Local-First Citadel) | Farcaster (Hybrid Agora on Optimism) | Lens Chain (ZK SocialFi Hyperchain) | DeSo (Infinite-State L1) | Nostr (Relay Wanderer) |
+|---------------------|--------------------------------------|-------------------------------------|-------------------------------------|--------------------------|------------------------|
+| **Core Architecture** | Browser-native local-first. All state in IndexedDB + Web Crypto. Zero server unless user opts into federation or contract mint. | Hybrid: On-chain identity/permissions (3 contracts on Optimism L2) + off-chain Hubs + Snapchain (Malachite BFT consensus, Tendermint-derived, account sharding). | ZKsync ZK Stack Validium hyperchain + Avail DA. Modular on-chain Social Primitives (Profiles, Graphs, Feeds, Groups) with customizable Rules. | Purpose-built L1 blockchain optimized for infinite-state social data (posts, profiles, coins stored directly on-chain). Revolution PoS consensus. | Pure client-relay protocol. No blockchain. Events broadcast to user-chosen relays. Minimalist JSON events over WebSocket. |
+| **Storage Model** | Local Vault (browser only). IPFS-style CID hashing for content addressing. One-click JSON export. No uploads by default. | Off-chain Hubs (replicated, verifiable) + on-chain storage metering. Snapchain for ordered social activity. | On-chain primitives + Avail DA for cheap, censorship-resistant data. Storage Nodes for decentralized content. | Fully on-chain "infinite state" — every post, like, follow stored permanently on L1. | Relays store and forward events. User chooses relays; no global guarantee. |
+| **Identity Mechanism** | Wallet = Self. ENS as display sigil. Optional ERC-721 SovereignProfile NFT (multi-chain deployable). | Farcaster ID (FID) mapped to Ethereum custody address via IdRegistry on Optimism. | NFT Profile (composable, minted on Lens Chain). Handles and Graphs as on-chain primitives. | On-chain username + profile stored directly on DeSo L1. Creator coins tied to identity. | Raw public-key cryptography (secp256k1). No on-chain registry. |
+| **Authentication** | SIWE (Sign-In With Ethereum) + wagmi/viem. No passwords, no email. | Wallet signature + KeyRegistry for EdDSA delegated signing keys. | Wallet or abstracted (phone/email via Lens) + ZK proofs. | Native wallet signature on DeSo L1. Cross-chain onboarding (MetaMask, etc.). | Nostr keypair only. No external auth needed. |
+| **Privacy / Encryption Model** | Private-by-default. Four Circles enforced locally + optional ERC-1155 CircleKeys for cryptographic gating. Web Crypto API encryption. | Public-by-design with client-side gating. No native local encryption. | On-chain transparency + Rule-based access control. ZK privacy in some primitives. | Fully public and permanent on L1. No native private circles. | Key-based encryption possible (NIP-04/44 DMs). Privacy via relay choice, not enforced containment. |
+| **Data Propagation / Sync** | Local-first. Optional ActivityPub federation (Fedify) for public Outer World posts. | Hub synchronization + Snapchain ordering. Clients read from any compliant Hub. | ZK rollup settlement + Storage Nodes. Cross-chain via Elastic Network. | Native L1 gossip and indexing. Built-in social graph propagation. | Direct relay-to-relay and client-to-relay WebSocket events. No global ordering guarantee. |
+| **Scalability Approach** | Personal scale first (browser limits). Network grows via organic federation. Multi-chain contract deployment (Ethereum, Polygon, Base, etc.). | Snapchain + account-level sharding: 10k+ TPS, linear horizontal scaling. StorageRegistry meters usage (~$7/year). | ZKsync horizontal scaling + Avail DA sampling. Designed for consumer SocialFi at cloud-like costs. | L1 engineered for storage-heavy apps. Infinite-state optimization from genesis. | Infinite by design — add more relays. No global state bloat. |
+| **Smart Contract Depth** | Optional & sovereign: ERC-721 Profile + ERC-1155 CircleKeys (Hardhat + OpenZeppelin). Deployed by user on any EVM chain. | Minimal: Only IdRegistry, StorageRegistry, KeyRegistry on Optimism. No per-post contracts. | Deep & modular: On-chain Social Primitives with customizable Rules, Open Actions, monetization modules. | None needed — social features are native L1 primitives (no smart contracts required for core social). | None. Protocol is not EVM-based. |
+| **Frontend / Client Stack** | Next.js 16 + React 19 + Tailwind v4 + RainbowKit. Fully client-side. | Multiple clients (Warpcast flagship). Open protocol allows any frontend. | Multiple clients (Orb flagship) + Lens SDKs. | Native clients + web. Built-in social features. | Hundreds of open clients (Damus, etc.). Pure protocol — no official client. |
+| **Interoperability / Federation** | Optional ActivityPub (true Fediverse bridge). Multi-chain NFT portability. | Cross-client via protocol. Limited Fediverse. | Elastic Network (ZKsync hyperchains) + cross-app composability. | Cross-chain social layer in progress (MetaMask, Solana, etc.). | Native relay federation. Works across any Nostr client/relay. |
+| **Security & Trust Model** | Browser sandbox + Web Crypto. User controls private keys and data. Contracts optional. | Sufficient decentralization: on-chain anchors + decentralized Hubs. | Ethereum-secured ZK rollup + Avail DA. | L1 consensus security. Public and verifiable. | Cryptographic only. Trust in chosen relays. Censorship resistance via multiplicity. |
+| **Development Paradigm** | Local-first philosophy. Code runs in user's browser. Contracts are user-minted tools, never the prison. | "Sufficient decentralization" — hybrid for UX + security. | Infrastructure-first: build on modular primitives. | Full-stack L1: social + money primitives out-of-the-box. | Minimalist protocol. Build anything on top. |
+
+### Archetypal Integration Note for Developers
+
+**SovereignRealm does not fight the others on their chosen battlegrounds. It precedes them.**
+
+- Where **Farcaster** and **Lens** externalize the social graph to the chain or ZK layer for composability, SovereignRealm keeps the *prima materia* (your thoughts) in the local Vault until the individuated Self consciously releases it.
+
+- Where **DeSo** and **Nostr** make every post a permanent broadcast or relay event, SovereignRealm enforces Stoic containment: the **Vault Only** Circle is the daily *Meditations* — examined, refined, and only then offered to Family, Collegium, or the federated Outer World.
+
+**This architecture is not a compromise. It is the missing psychological layer the entire DeSoc ecosystem has unconsciously sought: local-first sovereignty as the foundation for true participation.**
+
+---
+
+## Technical Stack
 
 - **Framework**: Next.js 16 (App Router), React 19
 - **Styling**: Tailwind CSS v4
