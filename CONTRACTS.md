@@ -1016,36 +1016,78 @@ bool isValid = zkVerifier.verifyMembership(signal, nullifier, proof);
 
 ### Deployment Guide
 
+#### Prerequisites
+
+1. **Install Semaphore dependencies**:
 ```bash
-# Install Semaphore dependencies
 bun add @semaphore-protocol/identity @semaphore-protocol/group @semaphore-protocol/proof
-
-# Deploy Semaphore coordinator (or use existing deployment)
-# Sepolia: 0x... (check Semaphore docs for latest)
-
-# Deploy your ZKCircleVerifier
-npx hardhat run scripts/deploy-zk-verifier.ts --network sepolia
+bun add --dev @semaphore-protocol/contracts
 ```
 
-**Example deployment script**:
-```typescript
-// scripts/deploy-zk-verifier.ts
-import { ethers } from "hardhat";
+2. **Get Semaphore v4 address for your network**:
+   - Check official docs: https://docs.semaphore.pse.dev/deployed-contracts
+   - Set in `.env`:
+```bash
+# Example for Sepolia
+SEMAPHORE_V4_SEPOLIA=0x...
+# Or set generic fallback
+SEMAPHORE_V4_ADDRESS=0x...
+```
 
-async function main() {
-  const SEMAPHORE_ADDRESS = "0x..."; // Semaphore v4 deployment
-  const CIRCLE_ID = 1; // Family Circle
+#### Deploy ZKCircleVerifier
 
-  const ZKCircleVerifier = await ethers.getContractFactory("ZKCircleVerifier");
-  const verifier = await ZKCircleVerifier.deploy(SEMAPHORE_ADDRESS, CIRCLE_ID);
+```bash
+# Deploy to testnet
+npx hardhat run scripts/deployZKCircleVerifier.ts --network sepolia
 
-  await verifier.waitForDeployment();
+# Deploy to L2s
+npx hardhat run scripts/deployZKCircleVerifier.ts --network base
+npx hardhat run scripts/deployZKCircleVerifier.ts --network optimism
+npx hardhat run scripts/deployZKCircleVerifier.ts --network arbitrum
+```
 
-  console.log(`ZKCircleVerifier deployed to ${verifier.target}`);
-  console.log(`Circle ID: ${CIRCLE_ID}`);
-}
+The script will:
+1. ✅ Deploy ZKCircleVerifier contract
+2. ✅ Create Semaphore groups for each Circle (Family, Work, Outer)
+3. ✅ Output contract addresses and group IDs
+4. ✅ Provide next steps for frontend integration
 
-main();
+#### Example Output
+
+```
+🔱 SovereignRealm ZK-Proof CircleKeys Deployment
+
+   The Self proves it is the gate — without ever opening it.
+
+Sovereign deploying from: 0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb0
+Network: Base (Chain ID: 8453)
+Using Semaphore v4 at: 0x...
+
+🔐 Deploying ZKCircleVerifier...
+✅ ZKCircleVerifier deployed at: 0x...
+
+📊 Creating Semaphore groups for Circles...
+
+   Creating group for FAMILY Circle (ID: 1)...
+   ✓ FAMILY Circle → Semaphore Group ID: 12345...
+
+   Creating group for WORK Circle (ID: 2)...
+   ✓ WORK Circle → Semaphore Group ID: 67890...
+
+   Creating group for OUTER Circle (ID: 3)...
+   ✓ OUTER Circle → Semaphore Group ID: 24680...
+
+======================================================================
+🎉 ZK-Proof CircleKeys Deployment Complete!
+======================================================================
+```
+
+#### Update Frontend Configuration
+
+Add to `.env.local`:
+```bash
+NEXT_PUBLIC_ZK_VERIFIER_CONTRACT=0x...
+NEXT_PUBLIC_SEMAPHORE_ADDRESS=0x...
 ```
 
 ### The Invisible Gate
