@@ -1,5 +1,7 @@
 # SovereignRealm - Quick Start Guide 🏛️
 
+> *New here? Read [MANIFESTO.md](./MANIFESTO.md) first to understand the vision: individuation before participation.*
+
 ## Access Your Realm
 
 **Live at:** http://localhost:3000 (publicly accessible on port 3000)

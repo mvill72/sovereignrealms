@@ -330,8 +330,11 @@ The frameworks of 2026 are merely tools that may one day stand guard at the oute
 
 ## Related Documentation
 
+### The Vision
+- **[MANIFESTO.md](./MANIFESTO.md)** - The founding vision in crystallized form
+
 ### Philosophy
-- **[PHILOSOPHY.md](./PHILOSOPHY.md)** - Why SovereignRealm exists (Jungian/Stoic manifesto + DeSoc shadow analysis)
+- **[PHILOSOPHY.md](./PHILOSOPHY.md)** - Why SovereignRealm exists (Jungian/Stoic depth + DeSoc shadow analysis)
 - **[README.md](./README.md)** - Project overview and quick start
 
 ### Technical Depth
