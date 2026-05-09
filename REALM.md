@@ -152,6 +152,8 @@ forge init contracts
 - On-chain identity registry
 - Decentralized ENS-style usernames
 
+> **For the complete cryptographic and philosophical deep-dive on CircleKeys**, see [CONTRACTS.md - CircleKeys Deep-Dive](./CONTRACTS.md#circlekeys-deep-dive-the-cryptographic-guardians)
+
 ### Phase 4: Real IPFS Integration
 ```bash
 # Option A: web3.storage (easiest)

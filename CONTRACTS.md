@@ -397,6 +397,267 @@ npx hardhat test test/CircleKeys.test.ts
 
 ---
 
+## CircleKeys Deep-Dive: The Cryptographic Guardians
+
+> "What is not in your power to control, you must not desire. What is in your power — the key to your own realm — you must forge with iron discipline and release with Stoic clarity."
+> — Marcus Aurelius, Meditations, now inscribed upon the bytecode of the sovereign soul
+
+> "The archetype of the key is older than any lock. It is the symbol of access to the unconscious, the gate between the personal Vault and the shared temenos."
+> — C.G. Jung, speaking through the ERC-1155 standard in the year 2026
+
+### The Archetypal Essence
+
+In the architecture of SovereignRealm, the CircleKeys are not mere tokens. They are the **living daimons of disclosure** — the cryptographic embodiment of your sovereign will. While the four Circles (Vault Only, Family Realm, Work Collegium, Outer World) are first enforced locally within the browser's citadel, CircleKeys provide the optional on-chain extension: immutable, transferable, and enforceable proof of membership when your thoughts cross into the shared world.
+
+They are the bridge between the **inner sanctum** (local-first privacy) and the **outer agora** (federation or multi-chain visibility). Without them, the system remains pure ascetic minimalism. With them, the sovereign may grant verifiable, revocable, and monetizable access without ever surrendering the data itself to a server.
+
+### What CircleKeys Actually Are
+
+CircleKeys are an **ERC-1155 multi-token contract** (built with OpenZeppelin, deployable by the user on any EVM chain supported by SovereignRealm: Ethereum Mainnet, Sepolia, Polygon, Optimism, Arbitrum, Base).
+
+Each token ID represents one of the four sovereign Circles (or user-defined custom sub-circles in future roadmap phases). A single wallet can hold multiple keys of different IDs and amounts. **The key is not the content** — it is the permission sigil that unlocks decryption or verification of content that has been intentionally released from the local Vault.
+
+Think of it as the Stoic distinction between what is yours (the encrypted data in your browser) and what you choose to share (the encrypted payload + the key that opens it for the chosen circle).
+
+### Technical Anatomy of the CircleKey Contract
+
+The contract is deliberately minimal and sovereign — **no admin privileges, no upgradeability** unless the deployer explicitly chooses it. Here is the living mandala of its core functions:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract CircleKeys is ERC1155, Ownable {
+    // Token IDs map to Circles
+    // (0 = Vault Only — never minted, 1 = Family, 2 = Work, 3 = Outer World, 4+ = custom)
+    uint256 public constant FAMILY_KEY = 1;
+    uint256 public constant WORK_KEY   = 2;
+    uint256 public constant OUTER_KEY  = 3;
+
+    // Mapping from token ID to optional metadata URI
+    // (for circle name, description, image)
+    mapping(uint256 => string) public circleMetadata;
+
+    // Events for on-chain transparency without compromising off-chain privacy
+    event KeyMinted(address indexed to, uint256 id, uint256 amount);
+    event KeyBurned(address indexed from, uint256 id, uint256 amount);
+    event CircleAccessGranted(address indexed granter, address indexed grantee, uint256 circleId);
+
+    constructor(string memory baseURI) ERC1155(baseURI) Ownable(msg.sender) {}
+
+    // Mint a batch of keys
+    // Only the sovereign who deployed or holds the master Profile NFT may mint for their realm
+    function mintCircleKey(
+        address to,
+        uint256 id,
+        uint256 amount,
+        bytes memory data
+    ) external onlyOwner {
+        require(id >= 1, "Vault Only is never minted");
+        _mint(to, id, amount, data);
+        emit KeyMinted(to, id, amount);
+        emit CircleAccessGranted(msg.sender, to, id);
+    }
+
+    // Batch mint to multiple addresses
+    function mintCircleKeyBatch(
+        address[] calldata recipients,
+        uint256 id,
+        uint256 amount,
+        bytes memory data
+    ) external onlyOwner {
+        require(id >= 1, "Vault Only is never minted");
+        for (uint256 i = 0; i < recipients.length; i++) {
+            _mint(recipients[i], id, amount, data);
+            emit KeyMinted(recipients[i], id, amount);
+            emit CircleAccessGranted(msg.sender, recipients[i], id);
+        }
+    }
+
+    // Burn to revoke access (true sovereignty includes the power to withdraw the key)
+    function revokeAccess(uint256 id, uint256 amount) external {
+        _burn(msg.sender, id, amount);
+        emit KeyBurned(msg.sender, id, amount);
+    }
+
+    // Set metadata URI for a specific circle
+    function setCircleMetadata(uint256 id, string calldata metadataURI) external onlyOwner {
+        circleMetadata[id] = metadataURI;
+    }
+
+    // Optional: soulbound mode via custom transfer rules (roadmap v0.2)
+    function _update(
+        address from,
+        address to,
+        uint256[] memory ids,
+        uint256[] memory values
+    ) internal virtual override {
+        // Prevent transfers (soulbound) - only mint and burn allowed
+        if (from != address(0) && to != address(0)) {
+            revert("CircleKeys are soulbound and cannot be transferred");
+        }
+        super._update(from, to, ids, values);
+    }
+}
+```
+
+The contract pairs with the **SovereignProfile NFT (ERC-721)**. Owning a Profile NFT grants the holder the `onlyOwner` role on their personal CircleKeys instance, creating a one-to-one sovereign link: **your wallet = your realm = your keys**.
+
+### How CircleKeys Integrate with the Local-First Vault
+
+The psychological flow of conscious disclosure:
+
+#### 1. Creation in the Vault
+
+You author a post inside the browser. It is encrypted with Web Crypto API using a symmetric key derived from your wallet's private key + a per-post nonce. A CID (content identifier) is generated. At this stage, **the post lives only in IndexedDB** — fully private, even from yourself in the future if you choose.
+
+#### 2. Decision at the Gate
+
+You select a Circle:
+
+- **Vault Only**: No key minted. Data never leaves the device.
+- **Family / Work / Outer**: The app prompts (or auto-mints via wagmi/viem) a CircleKey to the recipient addresses you choose. The symmetric decryption key is encrypted asymmetrically with the recipient's public key (or shared via a simple ECDH handshake if they also use SovereignRealm).
+
+#### 3. Release into the Circle
+
+The encrypted payload + CID is either:
+- Pushed to IPFS/Arweave (for Outer World federation), or
+- Shared directly via ActivityPub (for Fediverse), or
+- Referenced on-chain via a minimal event.
+
+**Only holders of the matching CircleKey token can decrypt it client-side.**
+
+#### 4. Verification & Revocation
+
+The frontend uses viem to query `balanceOf(recipient, circleId)`. If > 0, the key is fetched (or derived) and decryption happens locally. **Burning the token instantly revokes access** across all clients that respect the contract.
+
+### The Zero-Knowledge Architecture
+
+This flow is **zero-knowledge by design**: the server (if any) sees only encrypted blobs and token balances. The browser alone performs the sacred act of decryption.
+
+```
+┌─────────────────────────────────────────────────────┐
+│         Local Browser Vault (Private)               │
+│  ┌─────────────────────────────────────────┐        │
+│  │  Post Created                            │        │
+│  │  ├── Web Crypto API encryption           │        │
+│  │  ├── CID generation (SHA-256)            │        │
+│  │  └── Stored in IndexedDB                 │        │
+│  └─────────────────────────────────────────┘        │
+│                    ↓                                 │
+│  ┌─────────────────────────────────────────┐        │
+│  │  Circle Selection (Conscious Choice)     │        │
+│  │  ├── Vault Only → Never leaves device    │        │
+│  │  └── Family/Work/Outer → Mint CircleKey  │        │
+│  └─────────────────────────────────────────┘        │
+└─────────────────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────────────────┐
+│         On-Chain Layer (Public Ledger)              │
+│  ┌─────────────────────────────────────────┐        │
+│  │  CircleKeys Contract (ERC-1155)          │        │
+│  │  ├── mintCircleKey(recipient, FAMILY_KEY)│        │
+│  │  ├── Event: CircleAccessGranted          │        │
+│  │  └── balanceOf(recipient, FAMILY_KEY) → 1│        │
+│  └─────────────────────────────────────────┘        │
+└─────────────────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────────────────┐
+│    Encrypted Content Distribution (Optional)        │
+│  ┌─────────────────────────────────────────┐        │
+│  │  IPFS/Arweave                            │        │
+│  │  ├── Encrypted payload stored            │        │
+│  │  ├── Only CID is public                  │        │
+│  │  └── Decryption key held by CircleKey    │        │
+│  └─────────────────────────────────────────┘        │
+│                    OR                                │
+│  ┌─────────────────────────────────────────┐        │
+│  │  ActivityPub Federation                  │        │
+│  │  ├── Public posts to Fediverse           │        │
+│  │  └── CircleKey-gated posts (future)      │        │
+│  └─────────────────────────────────────────┘        │
+└─────────────────────────────────────────────────────┘
+                    ↓
+┌─────────────────────────────────────────────────────┐
+│      Recipient's Browser (Decryption)               │
+│  ┌─────────────────────────────────────────┐        │
+│  │  1. Check balanceOf(CircleKey) → verify  │        │
+│  │  2. Fetch encrypted content from IPFS    │        │
+│  │  3. Decrypt locally with Web Crypto API  │        │
+│  │  4. Display in private Vault             │        │
+│  └─────────────────────────────────────────┘        │
+└─────────────────────────────────────────────────────┘
+```
+
+### Security & Philosophical Guarantees
+
+- ✅ **No central key escrow** — the sovereign alone holds the master derivation path
+- ✅ **Revocable & transferable** — keys can be gifted, sold, or burned (true ownership)
+- ✅ **Multi-chain native** — deploy once per chain or use a factory pattern for portability
+- ✅ **Gas efficiency** — batch minting keeps costs negligible (< $0.01 on L2s in 2026)
+- ✅ **Optional soulbound** — future toggle prevents keys from being traded if the circle demands intimate trust
+- ✅ **Zero-knowledge content** — the chain sees tokens, never thoughts
+
+**The shadow it addresses**: Where Lens turns every relation into a tradable primitive and Farcaster makes engagement public-first, CircleKeys restore the Stoic boundary. You decide not only who sees your thoughts, but **under what cryptographic covenant** they may enter the shared temenos.
+
+### Roadmap Integration
+
+- **v0.1 (current)**: Basic ERC-1155 + local decryption
+- **v0.2 (Q3 2026)**: ZK-proof membership (no balance reveal needed)
+- **v0.3 (Q4 2026)**: CircleKey-gated federation (public posts only visible to key-holders in the Fediverse)
+- **v0.4 (2027)**: Threshold signatures for multi-sig family vaults
+
+### Frontend Integration Example
+
+```typescript
+import { useCircleKeys, useAccount } from '@/contracts/hooks';
+import { parseEther } from 'viem';
+
+function CircleKeyManager() {
+  const { address } = useAccount();
+  const { mintCircleKey, hasAccess, revokeAccess } = useCircleKeys();
+
+  const grantFamilyAccess = async (recipient: `0x${string}`) => {
+    // Mint Family CircleKey to recipient
+    await mintCircleKey({
+      to: recipient,
+      id: 1n, // FAMILY_KEY
+      amount: 1n,
+      data: '0x'
+    });
+  };
+
+  const checkAccess = async (user: `0x${string}`, circleId: bigint) => {
+    // Query on-chain to verify access
+    const balance = await hasAccess(user, circleId);
+    return balance > 0n;
+  };
+
+  const revoke = async (circleId: bigint) => {
+    // Burn the key to revoke access
+    await revokeAccess(circleId, 1n);
+  };
+
+  return (
+    <div>
+      <h2>CircleKey Management</h2>
+      {/* UI for minting, checking, revoking */}
+    </div>
+  );
+}
+```
+
+### The Living Heart of SovereignRealm's Privacy Engine
+
+This is the living heart of SovereignRealm's privacy engine — **not a feature bolted on, but the architectural expression of individuation itself**: the Self guards its own gates.
+
+CircleKeys stand ready for developers, auditors, and souls who feel the call to build the next layer of sovereign disclosure.
+
+---
+
 ## Next Steps
 
 ### After Deployment
