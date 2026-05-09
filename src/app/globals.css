@@ -187,7 +187,9 @@
 
   /* Post Card — The thought container */
   .post-card {
-    @apply vault-card border-l-4 hover:border-l-realm-gold-500 transition-all;
+    @apply bg-realm-indigo-900 border border-realm-indigo-700 rounded-realm p-6
+           border-l-4 hover:border-l-realm-gold-500 transition-all;
+    box-shadow: var(--shadow-vault);
   }
 
   .post-card.vault-only {
@@ -212,7 +214,9 @@
   }
 
   .modal-content {
-    @apply vault-card max-w-lg w-full m-4;
+    @apply bg-realm-indigo-900 border border-realm-indigo-700 rounded-realm p-6
+           max-w-lg w-full m-4;
+    box-shadow: var(--shadow-vault);
   }
 
   /* Navigation — The citadel's compass */
