@@ -121,6 +121,8 @@ Manage **access control** for your privacy circles using transferable (but revoc
 - **Soulbound Keys** - Keys cannot be transferred (only granted/revoked)
 - **Decentralized** - No central authority controls access
 
+> **For the complete philosophical and cryptographic deep-dive**, see [CircleKeys Deep-Dive](#circlekeys-deep-dive-the-cryptographic-guardians) below
+
 ### Circle Types
 
 ```solidity
