@@ -36,7 +36,8 @@ Your data never leaves your device until you consciously release it through one 
 *Join the others to broadcast. Join SovereignRealm to become before you broadcast.*
 
 > **For Philosophers:** See [PHILOSOPHY.md](./PHILOSOPHY.md) for the complete Jungian/Stoic manifesto and shadow analysis.
-> **For Architects:** See [REALM.md - Technical Foundations](./REALM.md#technical-foundations-the-mandala-of-architectures) for the detailed technical comparison table.
+>
+> **For Architects:** See [REALM.md - Technical Foundations](./REALM.md#technical-foundations-the-mandala-of-architectures) for the DeSoc platform comparison, and [LOCAL-FIRST.md](./LOCAL-FIRST.md) for the local-first framework mandala.
 
 ## 🚀 Quick Start
 
@@ -165,9 +166,15 @@ See [REALM.md](./REALM.md) for detailed roadmap.
 
 ## 📚 Documentation
 
+### Getting Started
 - [QUICKSTART.md](./QUICKSTART.md) - 30-second setup guide
 - [REALM.md](./REALM.md) - Full feature documentation + roadmap
+
+### Philosophy & Architecture
 - [PHILOSOPHY.md](./PHILOSOPHY.md) - **The Deeper Etched Scroll** - Why SovereignRealm exists & platform comparison
+- [LOCAL-FIRST.md](./LOCAL-FIRST.md) - **The Local-First Mandala** - Browser-native architecture & framework comparison (2026)
+
+### Technical Integration
 - [WEB3_GUIDE.md](./WEB3_GUIDE.md) - Web3 integration guide
 - [CONTRACTS.md](./CONTRACTS.md) - Smart contract documentation
 - [SMART_CONTRACTS_INTEGRATION.md](./SMART_CONTRACTS_INTEGRATION.md) - Contract deployment & integration

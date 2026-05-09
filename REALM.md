@@ -71,6 +71,62 @@ src/
     └── storage.ts      # Local vault management
 ```
 
+## Local-First Foundations
+
+> "The client is not a thin view begging data from the cloud. The client is the citadel — a node in the distributed kosmos, holding its own truth."
+
+SovereignRealm is built on **pure local-first principles** using native browser primitives. This is not a limitation — it is a deliberate architectural choice aligned with the philosophy of sovereignty.
+
+### Current Stack: Stoic Minimalism
+
+**Browser Primitives**:
+- **IndexedDB** - Primary storage for posts and profile
+- **localStorage** - Fallback and settings
+- **Web Crypto API** - Native encryption (SHA-256, AES-GCM)
+- **OPFS-ready** - Future-proof for enhanced performance
+
+**Performance**:
+- ✅ Instant response (no network latency)
+- ✅ Works fully offline
+- ✅ Handles thousands of posts effortlessly
+- ✅ Zero server costs or dependencies
+
+**Philosophy**: The Vault exists first. Data never leaves the device unless you consciously choose federation or export.
+
+### The 2026 Local-First Landscape
+
+| Framework | Best For | Alignment with SovereignRealm | Integration Priority |
+|-----------|----------|-------------------------------|---------------------|
+| **Browser Primitives** (current) | Pure local-first, single-user Vault | ✅ Perfect - Zero deps, pure sovereignty | **Foundation** |
+| **RxDB** | Complex queries on large datasets | ✅ High - Enhanced Vault search/filter | **Phase 2** - For richer querying |
+| **Yjs** | Real-time collaboration via CRDTs | ✅ High - Family/Work Circle collab | **Phase 2** - For Circle features |
+| **Automerge** | Immutable document history | ✅ High - Post version control | **Phase 3** - For advanced features |
+| **Zero** | Multi-device sync | ✅ High - Vault across devices | **Phase 3** - Optional sync |
+| **PowerSync** | Hybrid local + Postgres | ⚠️ Medium - Server-dependent | **Optional** - If needed for federation |
+| **ElectricSQL** | Postgres-first sync | ❌ Low - Too cloud-centric | **Avoid** - Conflicts with philosophy |
+
+**Full comparison**: See [LOCAL-FIRST.md](./LOCAL-FIRST.md) for the complete technical mandala and integration roadmap.
+
+### The Seven Ideals (Achieved)
+
+Based on the foundational [Ink & Switch paper (2019)](https://www.inkandswitch.com/local-first/):
+
+1. ✅ **No spinners** - Instant response (local-first)
+2. ✅ **Your work is not trapped** - JSON export always available
+3. ✅ **The network is optional** - Works fully offline
+4. ✅ **Seamless collaboration** - Optional via ActivityPub for public posts
+5. ✅ **The Long Now** - Your data outlives any service
+6. ✅ **Security and privacy by default** - Private-by-default, Web Crypto encryption
+7. ✅ **You retain ultimate ownership** - Browser vault, your keys, your rules
+
+### Evolution Without Compromise
+
+Future enhancements will follow this principle:
+
+> **The Vault exists first. Federation follows virtue. Individuation precedes participation.**
+
+As we integrate advanced local-first technologies (RxDB, Yjs, Zero), the core constraint remains: **private-by-default, offline-first, user-owned.**
+
 ## Next Steps - The Roadmap to Full Sovereignty
 
 ### ✅ Phase 2: Web3 Identity (COMPLETED!)
