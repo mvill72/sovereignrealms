@@ -35,7 +35,8 @@ Your data never leaves your device until you consciously release it through one 
 
 *Join the others to broadcast. Join SovereignRealm to become before you broadcast.*
 
-> See [PHILOSOPHY.md](./PHILOSOPHY.md) for the complete manifesto and comparison with other platforms.
+> **For Philosophers:** See [PHILOSOPHY.md](./PHILOSOPHY.md) for the complete Jungian/Stoic manifesto and shadow analysis.
+> **For Architects:** See [REALM.md - Technical Foundations](./REALM.md#technical-foundations-the-mandala-of-architectures) for the detailed technical comparison table.
 
 ## 🚀 Quick Start
 
