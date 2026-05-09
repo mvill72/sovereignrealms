@@ -44,8 +44,8 @@ check "No hardcoded private keys in code"
 # 3. Check .gitignore
 echo ""
 echo "📝 Checking .gitignore..."
-grep -q ".env.local" .gitignore
-check ".env.local in .gitignore"
+grep -q -E "\.env\*|\.env\.local" .gitignore
+check ".env files in .gitignore"
 
 grep -q "node_modules" .gitignore
 check "node_modules in .gitignore"
