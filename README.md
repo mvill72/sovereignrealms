@@ -5,7 +5,14 @@
 > "Rule first your own domain, let the outer world remain indifferent."
 > — Marcus Aurelius (adapted)
 
+> "One does not become enlightened by imagining figures of light, but by making the darkness conscious."
+> — C.G. Jung
+
 A Web3-native, privacy-first social platform where **you own your identity and data**. No surveillance, no forced sharing, no central authority. Your keys, your realm, your rules.
+
+**The browser is the throne. Local storage is the daily *Meditations*. The Vault exists first. Federation follows virtue.**
+
+This is not another node in the decentralized agora. This is the ***temenos*** — the sacred inner enclosure — where the individuated Self exists first, before any projection into the collective.
 
 ## 🌟 Features
 
