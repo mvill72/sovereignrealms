@@ -201,6 +201,7 @@ See [REALM.md](./REALM.md) for detailed roadmap.
 ### Technical Integration
 - [WEB3_GUIDE.md](./WEB3_GUIDE.md) - Web3 integration guide
 - [CONTRACTS.md](./CONTRACTS.md) - Smart contract documentation
+  - [CircleKeys Deep-Dive](./CONTRACTS.md#circlekeys-deep-dive-the-cryptographic-guardians) - Cryptographic guardians of the inner Circles
 - [SMART_CONTRACTS_INTEGRATION.md](./SMART_CONTRACTS_INTEGRATION.md) - Contract deployment & integration
 - [FEDERATION.md](./FEDERATION.md) - ActivityPub federation guide
 
