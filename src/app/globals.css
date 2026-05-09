@@ -266,6 +266,61 @@
   .pulse-slow {
     animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
+
+  .animate-pulse-slow {
+    animation: pulseSlow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulseSlow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+}
+
+/* ========================================
+   Jungian Archetype Theme Layers
+   ======================================== */
+
+/* The Self — Center of wholeness (Vault) */
+.archetype-self {
+  --archetype-accent: var(--color-realm-indigo-500);
+  --archetype-glow: rgba(99, 102, 241, 0.15);
+}
+
+/* The Shadow — Confronting the unconscious */
+.archetype-shadow {
+  --archetype-accent: var(--color-realm-crimson-600);
+  --archetype-glow: rgba(159, 18, 57, 0.15);
+}
+
+.archetype-shadow .vault-card {
+  border-color: var(--color-realm-crimson-600);
+}
+
+.archetype-shadow .modal-content {
+  box-shadow: 0 0 40px var(--archetype-glow);
+}
+
+/* The Persona — Social mask (Outer World) */
+.archetype-persona {
+  --archetype-accent: var(--color-realm-gold-500);
+  --archetype-glow: rgba(201, 161, 95, 0.15);
+}
+
+/* The Anima/Animus — Relational soul (Family/Work) */
+.archetype-anima {
+  --archetype-accent: var(--color-realm-gold-400);
+  --archetype-glow: rgba(212, 175, 119, 0.15);
+}
+
+/* The Hero — Journey of individuation (Onboarding) */
+.archetype-hero {
+  --archetype-accent: var(--color-realm-gold-500);
+  --archetype-glow: rgba(201, 161, 95, 0.2);
+}
+
+.archetype-hero .vault-card {
+  box-shadow: 0 0 60px var(--archetype-glow);
 }
 
 /* ========================================
